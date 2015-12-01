@@ -7,29 +7,24 @@
 
     <title>PAA tester</title>
 
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-
     <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$']]}});
-
-
-
+      MathJax.Hub.Config({showMathMenu:false, tex2jax: {inlineMath: [['$','$']]}});
 
 
     </script>
 
     <script type="text/javascript"
+            async
             src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
     </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script type="text/javascript" src="scripts/otazky.js"></script>
     <script type="text/javascript" src="scripts/app.js"></script>
-    <link rel="stylesheet" href="style/main.css">
 
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 
 
@@ -75,8 +70,8 @@
                         </p>
                     </div>
 
-                    <div ng-if="textAnswer">
-                        <textarea class="form-control" rows="5"></textarea>
+                    <div ng-show="textAnswer">
+                        <textarea class="form-control" rows="5" ng-model="userText"></textarea>
 
                         <div ng-if="ss">
 
@@ -148,12 +143,9 @@
             <div class="col-md-12">
 
                 <hr>
-
-
                 <p>
                     <small>
-                        <a onClick="return confirm('Opravdu resetovat?')"
-                           href="index.html">Reset testeru</a>
+                        <a href="index.html">Reset testeru</a>
                         |
                         listopad 2015
                         |
@@ -168,6 +160,13 @@
     </footer>
 
 </div>
+
+
+<script type="text/javascript">
+    window.onbeforeunload = function confirmExit() {
+        return "Přerušit test?";
+    };
+</script>
 
 </body>
 </html>

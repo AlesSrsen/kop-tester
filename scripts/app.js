@@ -51,11 +51,16 @@
 
         var currentQuestionIndex = 0;
         $scope.selection = [];
+        $scope.userText = "";
         $scope.totalErrors = 0;
         $scope.totalOK = 0;
         var tmpQQ;
 
         var OTAZKY;
+
+        $scope.reset = function () {
+            $scope.userText = "";
+        };
 
         $scope.setQuestions = function (questions) {
 
@@ -64,10 +69,15 @@
             var fin = [];
             var iter = 1;
             $scope.question = [];
-            $scope.textAnswer = undefined;
+            $scope.textAnswer = "";
 
             $scope.questionText = questions.otazka;
-            $scope.note = questions.note;
+
+            if(questions.note) {
+                $scope.note = questions.note;
+            } else {
+                $scope.note = "";
+            }
 
             angular.forEach(questions.odpovedi, function (value, key) {
 
@@ -143,11 +153,12 @@
         $scope.next = function () {
             currentQuestionIndex++;
             $scope.questionText = "";
-            $scope.note = undefined;
+            $scope.note = "";
 
             $scope.ss = false;
             $scope.selection = [];
             $scope.setQuestions(OTAZKY.pop());
+            $scope.reset();
         };
 
         $scope.isCorrect = function (que) {

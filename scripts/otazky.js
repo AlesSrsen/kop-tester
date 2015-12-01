@@ -55,7 +55,7 @@ otazky.push({
     spravne: {1: 1, 2: 0, 3: 1, 4: 0}
 });
 otazky.push({
-    otazka: "Zaškrtněte správná tvrzení (za předpokladu, že platí $NP =! P$):",
+    otazka: "Zaškrtněte správná tvrzení (za předpokladu, že platí $NP \\neq P$):",
     odpovedi: {
         1: "$NP \\subset EXPTIME$",
         2: "$P \\subset NP$",
@@ -65,7 +65,7 @@ otazky.push({
     spravne: {1: 1, 2: 1, 3: 0, 4: 1}
 });
 otazky.push({
-    otazka: "Zaškrtněte správná tvrzení (za předpokladu, že platí $NP =! P$)",
+    otazka: "Zaškrtněte správná tvrzení (za předpokladu, že platí $NP \\neq P$)",
     odpovedi: {
         1: "$NPC = NP \\cap NPH$",
         2: "$P \\subset NPC$",
@@ -96,10 +96,11 @@ otazky.push({
 otazky.push({
     otazka: "Zaškrtněte správná tvrzení:",
     odpovedi: {
-        1: "NPC problémy jsou ty nejtěžsí rozhodovací kombinatorické problémy (ne, to jsou NPH)",
+        1: "NPC problémy jsou ty nejtěžsí rozhodovací kombinatorické problémy",
         2: "Všechny P problémy lze řešit v polynomiálním čase (det. Turingovým strojem)",
         3: "Pro některé NP úplné problémy existuje polynomiální algoritmus (pro deterministický Turingův stroj)"
     },
+    note: "NPC problémy NEjsou ty nejtěžsí rozhodovací kombinatorické problémy, to jsou NPH",
     spravne: {1: 0, 2: 1, 3: 0}
 });
 otazky.push({
@@ -114,7 +115,7 @@ otazky.push({
     spravne: {1: 0, 2: 0, 3: 1, 4: 1, 5: 1}
 });
 otazky.push({
-    otazka: "Zaškrtněte správná tvrzení. systematická strategie prohledávání stavového prostoru:",
+    otazka: "Zaškrtněte správná tvrzení. Systematická strategie prohledávání stavového prostoru:",
     odpovedi: {
         1: "Vždy nalezne optimální řešení (pokud existuje)",
         2: "Vždy prohledá celý stavový prostor",
@@ -136,10 +137,10 @@ otazky.push({
 otazky.push({
     otazka: "Zaškrtněte správné tvrzení:",
     odpovedi: {
-        1: "Jestliže je daný problém $O(n2)$, neexistuje algoritmus řešící tento problém v lineárním čase.",
-        2: "Jestliže je daný problém $Ω(n2)$, neexistuje algoritmus řešící tento problém v lineárním čase.",
-        3: "Jestliže je daný problém $Θ(n2)$, neexistuje algoritmus řešící tento problém v lineárním čase.",
-        4: "Jestliže existuje algoritmus řešící daný problém v čase $O(n2)$, je tento problém $Θ(n2)$."
+        1: "Jestliže je daný problém $O(n^2)$, neexistuje algoritmus řešící tento problém v lineárním čase.",
+        2: "Jestliže je daný problém $Ω(n^2)$, neexistuje algoritmus řešící tento problém v lineárním čase.",
+        3: "Jestliže je daný problém $Θ(n^2)$, neexistuje algoritmus řešící tento problém v lineárním čase.",
+        4: "Jestliže existuje algoritmus řešící daný problém v čase $O(n^2)$, je tento problém $Θ(n^2)$."
     },
     spravne: {1: 0, 2: 1, 3: 1, 4: 0}
 });
@@ -173,34 +174,43 @@ otazky.push({
 });
 otazky.push({
     otazka: "Zformulujte nějakou Co-NP (a nepatřící do P) rozhodovací verzi problému odvozeného od problému obchodního cestujícího.",
-    odpoved: "Neexistuje uzavřená cesta (Hamiltonovská kužnice), která prochází všechna města a žádné město dvakrát. (Podle toho, co říkal na cvičeních je to Co-NP doplněk k NP a vytvoří se znegováním toho, na co se ptám.)"
+    odpoved: "co-NP úloha nesmí mít krátkého svědka ANO == nelze nalezením jednoho kladného případu ukončit prohledávání. Proto otázka může znít: <b>Jsou všechny hamiltonovy kružnice kratší jak $T$?</b><br>(Musí se tak začít prohledávat cesty delší jak $T$ a zjistit, jestli nějaká z nich je hamiltonova kružnice.) "
 });
 
 otazky.push({
-    otazka: "A)Dokažte, že rozhodovací verze problému \"minimum bin packing\" patří do NP.<br>B)Navrhněte pro tento problém konfigurační proměnné<br>C) Co je zde certifikát? jak jej ověřím ?",
-    odpoved: "„Minimum bin packing problem“: „je dána množina n věcí a pro každou věc její velikost. Je možné všechny věci umístit do nejvýše K kontejnerů o kapacitě B každý?\" Aby byl problém v NP, musí jít v polyn. čase ověřit certifikát. Jako certifikát zvolíme pole A velikosti n, kde na pozici A[n] je číslo kontejneru, kde se nachází daná věc n. Ověření proběhne tak, že projdu pole A a sečtu váhy věci v každém kontejneru. Takhle vzniklé váhy porovnám s kapacitami kontejnerů ze zadání. Složitost je asi $O(n+n)$ (sčítání a porovnávání), což je polynomiální. Pole A, kde si pro každou věc pamatuju, ve kterém je kontejneru. Certifikát je konkrétní ohodnocení konfiguračních proměnných, ověření proběhne tak, jak je naznačeno v důkazu, že je problém NP"
+    otazka: "A) Dokažte, že rozhodovací verze problému \"minimum bin packing\" patří do NP.<br>" +
+    "B) Navrhněte pro tento problém konfigurační proměnné<br>" +
+    "C) Co je zde certifikát? Jak jej ověřím?",
+    odpoved: "Aby byl problém v NP, musí jít v polyn. čase ověřit jeho certifikát. Certifikátem zvolíme pole $A$ velikosti $n$, kde na pozici $A[n]$ je číslo kontejneru, ve kterém se machází daná věc $n$." +
+    "Ověření proběhne tak, že projdu pole $A$ a sečtu váhy věci v každém kontejneru. Takhle vzniklé váhy porovnám s kapacitami kontejnerů ze zadání. Složitost je asi $O(n+n)$ (sčítání a porovnávání), což je polynomiální. Pole $A$, kde si pro každou věc pamatuju, ve kterém je kontejneru. Certifikát je konkrétní ohodnocení konfiguračních proměnných, ověření proběhne tak, jak je naznačeno v důkazu, že je problém NP",
+    note: "<b>Minimum bin packing problem</b> = Je dána množina $n$ věcí a pro každou věc její velikost. Je možné všechny věci umístit do nejvýše $K$ kontejnerů o kapacitě $B$ každý?"
 });
 otazky.push({
-    otazka: "A) Dokažte, že optimalizační problém obchodního cestujícího (TSP-O) patří do NPO.<br>B)Vyjmenujte jeho konfigurační proměnné<br>C) Co je zde certifikátem?",
+    otazka: "A) Dokažte, že optimalizační problém obchodního cestujícího (TSP-O) patří do NPO.<br>B) Vyjmenujte jeho konfigurační proměnné<br>C) Co je zde certifikátem?",
     odpoved: " Problém se odvíjí od obchodního cestujícího, jehož certifikát jsme schopni ověřit v polynomiálním čase a dá se převést na SAT (že SAT je NPC dokazuje COOKova věta), je tedy NP. Dále optimalizujeme na „nejkratší cestu“ a tak dostáváme NPO. <br> b) vektor obsahující posloupnost uzlů <br> c) cert =  posloupnost uzlů splňující omezující podmínku s nejkratší cestou ; omezující podmínky =  cesta musí být uzavřená a každý uzel navštívit právě jednou "
 });
 otazky.push({
-    otazka: "A) Dokažte, že optimalizační problém uzlového pokrytí grafu patří do NPO<br>B) Vyjmenujte jeho konfigurační proměnné<br>C)Co je zde certifikátem?",
+    otazka: "A) Dokažte, že optimalizační problém uzlového pokrytí grafu patří do NPO<br>B) Vyjmenujte jeho konfigurační proměnné<br>C) Co je zde certifikátem?",
     odpoved: "TODO:Neznama odpoved"
 });
 otazky.push({
     otazka: "A) Dokažte, že problém splnitelnosti booleovské formule (SAT) patří do NP.<BR>B) Vyjmenujte jeho konfigurační proměnné.<BR>C) Co je certifikátem rozhodovací verze tohoto problému?",
-    odpoved: "A)Abychom dokázali, že je problém v NP, musíme nalézt certifikát a certifikát ověřit v polynomiálním čase.B)Bitový vektor (ohodnocení true/false jednotlivých proměnných v SATu)C)Certifikátem je takové ohodnocení (takový bitový vektor), pro který je daný SAT = 1"
+    odpoved: "<ul><li>A) Abychom dokázali, že je problém v NP, musíme nalézt certifikát a certifikát ověřit v polynomiálním čase.</li>" +
+    "<li>B) Bitový vektor (ohodnocení $true/false$ jednotlivých proměnných v SATu)</li>" +
+    "<li>C) Certifikátem je takové ohodnocení (takový bitový vektor), pro který je daný SAT = 1</li></ul>"
 });
 otazky.push({
-    otazka: "A)Dokažte, že optimalizační problém nalezení max. kliky v grafu patří do NPO. (Max.klika = maximální úplný podgraf)<br>B) Vyjmenujte jeho konfigurační proměnné<br>C) Co jsou zde omezující podmínky?<br>",
-    odpoved: "A)Lze převést na SAT (NPC) a tudíž je v NP. Protože se jedná o optimalizační problém spadá do NPO<br>B)vektor všech uzlů, který nabývá 1 na ítém místě, pokud je ítý uzel momentálně obsažen v klice, 0 pokud ne<br>X = {X1 … Xn}, kde N je rovno počtu uzlů grafu. Proměná Xi nabývá hodnot 0/1, podle toho zda daný uzel tvoří součást kliky.<br>C)Podgraf musí být úplný<br>"
+    otazka: "A) Dokažte, že optimalizační problém nalezení max. kliky v grafu patří do NPO.<br>B) Vyjmenujte jeho konfigurační proměnné<br>C) Co jsou zde omezující podmínky?<br>",
+    odpoved: "A) Lze převést na SAT (NPC) a tudíž je v NP. Protože se jedná o optimalizační problém spadá do NPO (!Dle Fit-Wiki je A) možná špatně.!)<br>" +
+    "B) Vektor všech uzlů, který nabývá $1$ na $i$-tém místě, pokud je $i$-tý uzel momentálně obsažen v klice, $0$ pokud není obsažen.<br>Vektor $X = {X_1 … X_n}$, kde $N$ je rovno počtu uzlů grafu. Proměná $X_i$ nabývá hodnot $0/1$, podle toho zda daný uzel tvoří součást kliky.<br>" +
+    "C) Podgraf musí být úplný<br>",
+    note: "Maximální klika = maximální úplný podgraf. Klika je takový podgraf nějakého grafu, který je úplným grafem, tzn. jehož všechny vrcholy jsou spojeny hranou se všemi zbylými."
 });
 otazky.push({
-    otazka: "Pro všechny problémy ve třídě NPH platí (za předpokladu, že $NP =! P$)",
+    otazka: "Pro všechny problémy ve třídě NPH platí (za předpokladu, že $NP \\neq P$)",
     odpovedi: {
         1: "Neexistuje pro ně polynomiální algoritmus pro det. Turingův stroj",
-        2: "Jejich optimalizační kritérium se dá vždy vypočítat v plynomiálním čase (det. tur. strojem)",
+        2: "Jejich optimalizační kritérium se dá vždy vypočítat v plynomiálním čase (det. Turingovým strojem)",
         3: "Jsou řešitelné v polynomiálním čase nedet. tur. stroje"
     },
     spravne: {1: 1, 2: 1, 3: 1}
@@ -208,7 +218,7 @@ otazky.push({
 
 
 otazky.push({
-    otazka: "Pro všechny problémy ve třídě NPH platí (za předpokladu, že $NP =! P$)",
+    otazka: "Pro všechny problémy ve třídě NPH platí (za předpokladu, že $NP \\neq P$)",
     odpovedi: {
         1: "Jsou to ty nejtěžší existující problémy",
         2: "Neznáme pro ně polynomiální algoritmus pro deterministický Turingův stroj",
@@ -268,7 +278,7 @@ otazky.push({
 });
 
 otazky.push({
-    otazka: "Jakým způsobem lze dokázat, že daný problém patří do NPC ?",
+    otazka: "Jakým způsobem lze dokázat, že daný problém patří do NPC?",
     odpoved: "Dokážeme že problém je v NP (nalezneme certifikát, který dokážeme ověřit v polynomiálním čase)<br>Dokážeme převést SAT na náš problém"
 });
 
@@ -307,12 +317,22 @@ otazky.push({
 
 otazky.push({
     otazka: "Co je to kombinatorický problém, čím je charakterizován",
-    odpoved: "kombinatorický problém je charakterizován:vstupními proměnnými,výstupními proměnnými,konfiguračními proměnnými,omezením,optimalizačním kritériem, pokud je třeba"
+    odpoved: "<p>Kombinatorický problém je charakterizován:</p><ul>" +
+    "<li>Vstupní proměnné (např.: seznam děr)</li>" +
+    "<li>Výstupní proměnné (např.: pořadí děr)</li>" +
+    "<li>Konfigurační proměnné (např.: pořadí děr)</li>" +
+    "<li>Omezení (např.: uzavřená cesta, každá díra právě jednou)</li>" +
+    "<li>Optimalizační kritérium (např.: nejkratší!)</li>" +
+    "</ul><br>" +
+    "<p>" +
+    "Kombinatorický problém může být I.) Rozhodovací; II.) Konstruktivní; III.) Enumerační" +
+    "</p>"
 });
 
 otazky.push({
     otazka: "Co je stavový prostor? Čím je specifikován?",
-    odpoved: "Nechť $S={si}$ je množina všech stavů algoritmu $A$ řešícího $I$. Nechť $Q={qj}$ je množina operací $S→S$ takových, že $q_j(s_i)≠s_i$ pro všechna $s_i,q_j$. Pak dvojici $(S,Q)$ nazveme stavovým prostorem algoritmu $A$ řešícího I.<br>Je charakterizován:<br>Množinou stavů<br>Množinou operací, které reprezentují přechody mezi dvěma stavy"
+    odpoved: "Nechť $S={s_i}$ je množina všech stavů algoritmu $A$ řešícího $I$. Nechť $Q={qj}$ je množina operací $S→S$ takových, že $q_j(s_i)≠s_i$ pro všechna $s_i,q_j$. Pak dvojici $(S,Q)$ nazveme stavovým prostorem algoritmu $A$ řešícího $I$.<br>" +
+    "Je charakterizován:<br><ul><li>Množinou stavů</li><li>Množinou operací, které reprezentují přechody mezi dvěma stavy</li></ul>"
 });
 
 otazky.push({
@@ -332,7 +352,7 @@ otazky.push({
 
 otazky.push({
     otazka: "Co jsou to iterativní heuristiky? Uveďte příklad.",
-    odpoved: "iterativní heuristika začne s nějakým řešením a to postupně vylepšuje. Např. Simulované ochlazování."
+    odpoved: "Iterativní heuristika začne s nějakým řešením a to postupně vylepšuje. Iterativní heuristika se ale tak pohybuje v podgrafu stavového prostoru, ve kterém se nemusí nacházet globální optimum. Např. Simulované ochlazování."
 });
 
 
@@ -367,9 +387,9 @@ otazky.push({
 });
 
 otazky.push({
-    otazka: "Je dán problém $Π$. $Q(S)$ budiž hodnota optimalizačního kritéria řešení S instance I tohoto problému, dokázat, že algoritmus řešící tento problém je aproximativní. Musíme tedy:",
+    otazka: "Je dán problém $Π$. $Q(S)$ budiž hodnota optimalizačního kritéria řešení $S$ instance $I$ tohoto problému, dokázat, že algoritmus řešící tento problém je aproximativní. Musíme tedy:",
     odpovedi: {
-        1: "Pro každou instanci I algoritmus skončí v polynomiálním počtu kroků",
+        1: "Pro každou instanci $I$ algoritmus skončí v polynomiálním počtu kroků",
         2: "Relativní kvalita algoritmu je konečná",
         3: "Relativní kvalita algoritmu $< 1$",
         4: "$Π \\in NP$"
@@ -393,17 +413,19 @@ otazky.push({
 
 otazky.push({
     otazka: "Jaký je rozdíl v asymptotické složitosti metod \"backtracking\" (prohledávání s návratem) a \"forward-checking\" (dopředná kontrola)?",
-    odpoved: "backtracking má horší nebo stejnou asymptotickou složitost než forward checking (viz. 7. přednáška rozestavění dam)<br>Správná odpověď je „žádný“, asymptoticky jsou obě metody stejně obtížné."
+    odpoved: "Backtracking má horší nebo stejnou asymptotickou složitost než forward checking.<br>" +
+    "<b>Správná odpověď je „žádný“</b>, asymptoticky jsou obě metody stejně obtížné."
 });
 
 otazky.push({
-    otazka: "Mějme optimalizační problém unátního pokrytí. Je dána binární (obsahující pouze hodnoty \"0\" a \"1\") matice A o rozměrech (m,n). m je počet řádků, které mají být pokryty podmnožinou sloupců (z n). Daný řádek (i) je pokryt sloupcem j, pokud A[i,j] = 1. Problém nalezení minimálního pokrytí, tj. nalezení minimální podmnožiny sloupců, které pokrývají všechny řádky, patří do NPH. Zformulujte rozhodovací verzi tohoto problému, která má srovnatelnou složitost.",
+    otazka: "Mějme optimalizační problém unátního pokrytí. Je dána binární (obsahující pouze hodnoty \"0\" a \"1\") matice $A$ o rozměrech $(m,n)$. $m$ je počet řádků, které mají být pokryty podmnožinou sloupců (z $n$). Daný řádek ($i$) je pokryt sloupcem $j$, pokud $A[i,j] = 1$. Problém nalezení minimálního pokrytí, tj. nalezení minimální podmnožiny sloupců, které pokrývají všechny řádky, patří do NPH. Zformulujte rozhodovací verzi tohoto problému, která má srovnatelnou složitost.",
     odpoved: "TODO:nezadana spravna odpoved"
 });
 
 otazky.push({
     otazka: "Jakým způsobem lze dokázat, že daný problém nepatří do NPC?",
-    odpoved: "Problém není převoditelný na SAT."
+    odpoved: "Problém není převoditelný na SAT.",
+    note: "Všechny problémy v NPC jsou navzájem ekvivalentní a tedy musejí být převoditelné na SAT."
 });
 
 otazky.push({
@@ -426,8 +448,8 @@ otazky.push({
 });
 
 otazky.push({
-    otazka: "Jaká je pravděpodobnost splnění dané klauzule SAT problému o max. k proměnných pro plně randomizovaný algoritmus, který opakovaně čistě náhodně generuje ohodnocení vstupních proměnných? Jaká bude pravděpodobnost splnění celé formule při n klauzulích?",
-    odpoved: "$1 - 2^{-k}$"
+    otazka: "Jaká je pravděpodobnost splnění dané klauzule SAT problému o max. $k$ proměnných pro plně randomizovaný algoritmus, který opakovaně čistě náhodně generuje ohodnocení vstupních proměnných? Jaká bude pravděpodobnost splnění celé formule při $n$ klauzulích?",
+    odpoved: "$1-\\frac{1}{2^{k}}$"
 });
 
 otazky.push({
@@ -461,11 +483,11 @@ otazky.push({
 
 otazky.push({
     otazka: "Jak je specifikován optimalizační kombinatorický problém ?",
-    odpoved: "Jedná se o kombinatorický problém, pro který je zadáno optimalizační kritérium (cenová funkce)."
+    odpoved: "Jedná se o kombinatorický problém, pro který je <b>zadáno optimalizační kritérium</b> (cenová funkce)."
 });
 
 otazky.push({
-    otazka: "Zaškrtněta správná tvrzení (za předpokladu, že platí $NP =! P$)",
+    otazka: "Zaškrtněta správná tvrzení (za předpokladu, že platí $NP \\neq P$)",
     odpovedi: {
         1: "$P \\subset NPI$",
         2: "$P \\cap NPC = \\textrm{Ø}$",
@@ -483,7 +505,7 @@ otazky.push({
 });
 
 otazky.push({
-    otazka: "Zaškrtněta správná tvrzení (za předpokladu, že platí $NP =! P$)",
+    otazka: "Zaškrtněta správná tvrzení (za předpokladu, že platí $NP \\neq P$)",
     odpovedi: {
         1: "$P \\subset NP$",
         2: "$NPI \\subset NPC$",
@@ -494,8 +516,9 @@ otazky.push({
 });
 
 otazky.push({
-    otazka: "Uveďte příklad grafu stavového prostoru pro problém nalzení kliky v grafu (max. úplný podgraf). Co jsou uzly v tomto grafu, co hrany?",
-    odpoved: "Uzly jsou stavy, které reprezentují podgrafy grafu, jehož pokrytí hledáme<br>Hrany jsou operace, které reprezentují přidání/odebrání hrany z podgrafů"
+    otazka: "Uveďte příklad grafu stavového prostoru pro problém nalezení kliky v grafu (max. úplný podgraf). Co jsou uzly v tomto grafu, co hrany?",
+    odpoved: "Uzly jsou stavy, které reprezentují podgrafy grafu, jehož pokrytí hledáme<br>Hrany jsou operace, které reprezentují přidání/odebrání hrany z podgrafů",
+    note: "Maximální klika = maximální úplný podgraf. Klika je takový podgraf nějakého grafu, který je úplným grafem, tzn. jehož všechny vrcholy jsou spojeny hranou se všemi zbylými."
 });
 
 otazky.push({
@@ -526,12 +549,15 @@ otazky.push({
 
 otazky.push({
     otazka: "Dokažte nebo vyvraťte, že konstruktivní optimalizační problém batohu patří do NPO.",
-    odpoved: "Optimalizační problém $\\varPi$ patří do třídy NPO, jestliže splňuje následující podmínky: <br><br> I.) velikost výstupu instance je omezena polynomem ve velikosti instance -- výstup lze zapsat v polynomiálním čase; <br> II.)problém, zda daná konfigurace je řešením, patří do P -- omezující podmínky lze vyhodnotit v polynomiálním čase; <br> III.) hodnotu optimalizačního kritéria pro každé řešení každé instance lze vypočíst v polynomiálním čase -- optimalizační kritérium lze vyhodnotit v polynomiálním čase."
+    odpoved: "Optimalizační problém $\\varPi$ patří do třídy NPO, jestliže splňuje následující podmínky: <br><br> I.) Velikost výstupu instance je omezena polynomem ve velikosti instance -- výstup lze zapsat v polynomiálním čase; <br>" +
+    "II.) Problém, zda daná konfigurace je řešením, patří do P -- omezující podmínky lze vyhodnotit v polynomiálním čase; <br>" +
+    "III.) Hodnotu optimalizačního kritéria pro každé řešení každé instance lze vypočíst v polynomiálním čase -- optimalizační kritérium lze vyhodnotit v polynomiálním čase."
 });
 
 otazky.push({
     otazka: "Zformulujte nějakou NPC rozhodovací verzi problému nalezení uzlového pokrytí grafu.",
-    odpoved: "Existuje uzlové pokrytí grafu velikost $k\\leq n$?"
+    odpoved: "Existuje uzlové pokrytí grafu velikost $k\\leq n$?",
+    note: "Vrcholové pokrytí grafu taková podmnožina vrcholů, že každá hrana grafu je incidentní aspoň s jedním vrcholem z této množiny."
 });
 
 
@@ -597,18 +623,23 @@ otazky.push({
 });
 
 otazky.push({
-    otazka: "Mějme logickou funkci zadanou jako součet součinů (SOP, DNF). Rozhodovací problém určení splnitelnosti pro takto zadanou funkci (funkce může být rovna 1) patří do:",
+    otazka: "Mějme logickou funkci zadanou jako součet součinů (SOP, DNF). Rozhodovací problém určení splnitelnosti pro takto zadanou funkci (funkce může být rovna $1$) patří do:",
     odpovedi: {
         1: "P",
         2: "NP",
         3: "NPC",
         4: "co-NP"
     },
+    note: "<ul>" +
+    "<li>P: Stačí splnit jednu klauzuli a máme vyhráno. A protože v disjunktivní normální formě může být proměnná v klauzuli jen jednou, najít takové ohodnocení je snadné.</li>" +
+    "<li>NP: Když je to P, musí to být i NP</li>" +
+    "<li>co-NP: Když je to P, musí to být i co-NP</li>" +
+    "</ul>",
     spravne: {1: 1, 2: 1, 3: 0, 4: 1}
 });
 
 otazky.push({
-    otazka: "Mějme logickou funkci zadanou jako součin součtů (POS, CNF). Rozhodovací problém určení kontradikce pro takto zadanou funkci (pro všechna ohodnocení proměnných je funkce rovna 0) patří do:",
+    otazka: "Mějme logickou funkci zadanou jako součin součtů (POS, CNF). Rozhodovací problém určení kontradikce pro takto zadanou funkci (pro všechna ohodnocení proměnných je funkce rovna $0$) patří do:",
     odpovedi: {
         1: "P",
         2: "NP",
@@ -619,7 +650,7 @@ otazky.push({
 });
 
 otazky.push({
-    otazka: "Mějme logickou funkci zadanou jako součin součtů (POS, CNF). Rozhodovací problém určení splnitelnosti pro takto zadanou funkci (funkce může být rovna 1) patří do:",
+    otazka: "Mějme logickou funkci zadanou jako součin součtů (POS, CNF). Rozhodovací problém určení splnitelnosti pro takto zadanou funkci (funkce může být rovna $1$) patří do:",
     odpovedi: {
         1: "P",
         2: "NP",
@@ -630,7 +661,7 @@ otazky.push({
 });
 
 otazky.push({
-    otazka: "Co znamená, když relativní kvalita ($R$) daného algoritmu je rovna 1?",
+    otazka: "Co znamená, když relativní kvalita ($R$) daného algoritmu je rovna $1$?",
     odpoved: "Algoritmus je maximálně přesný, vždy dostáváme optimální řešení."
 });
 
@@ -646,12 +677,12 @@ otazky.push({
 
 otazky.push({
     otazka: "Popište princip Las Vegas randomizovaného algoritmu.",
-    odpoved: "Čas běhu je náhodná proměnná, výsledek je vždy správný. Příklad: Quicksort"
+    odpoved: "Randomizovaný algoritmus: Čas běhu je náhodná proměnná, výsledek je vždy správný. Příklad: Quicksort"
 });
 
 otazky.push({
     otazka: "Popište princip Monte Carlo algoritmu.",
-    odpoved: "Dosažený výsledek (optimalizační kritérium) je náhodná proměnná, čas běhu je pro danou instanci pevný."
+    odpoved: "Randomizovaný algoritmus: Dosažený výsledek (optimalizační kritérium) je náhodná proměnná, čas běhu je pro danou instanci pevný."
 });
 
 otazky.push({
@@ -672,7 +703,8 @@ otazky.push({
 otazky.push({
     otazka: "Od problému nalezení minimální uzlového pokrytí grafu odvoďte rozhodovací problém, který by patřil do třídy P",
     odpoved: "Minimální uzlové pokrytí: nalezněte minimální množinu uzlů grafu, která inciduje se všemi hranami. " +
-    "=> Incidují v dané konfiguraci dané uzly se všemi hranami? NEBO Rozhodovací problém vrcholového pokrytí se ptá, zda-li v daném grafu existuje vrcholové pokrytí maximálně o k vrcholech."
+    "=> Incidují v dané konfiguraci dané uzly se všemi hranami? NEBO Rozhodovací problém vrcholového pokrytí se ptá, zda-li v daném grafu existuje vrcholové pokrytí maximálně o k vrcholech.",
+    note: "Vrcholové pokrytí grafu taková podmnožina vrcholů, že každá hrana grafu je incidentní aspoň s jedním vrcholem z této množiny."
 });
 
 otazky.push({
@@ -684,7 +716,7 @@ otazky.push({
     otazka: "Pomocí Turingovy redukce je možné:",
     odpovedi: {
         1: "Převést instanci jakéhokoliv problému na instance NPH problému",
-        2: "Převést instanci (NPH) rozhodovacího problůmu na instanci (NPC) konstuktivního optimalizačního problému",
+        2: "Převést instanci (NPH) rozhodovacího problému na instanci (NPC) konstuktivního optimalizačního problému",
         3: "Převést instanci konstruktivního optimalizačního problému na instanci rozhodovacího problému",
         4: "Dokázat, že daný rozhodovací problém patří do NPH",
         5: "Převést NPH problém na jiný NPH problém v polynomiálním čase",
@@ -697,8 +729,8 @@ otazky.push({
     otazka: "Pomocí Turingovy redukce je možné:",
     odpovedi: {
         1: "Převést instanci jakéhokoliv problému na instanci NPH problému v polynomiálním čase",
-        2: "Převést instanci NPC rozhodovcího problému n instanci NPH konstruktivního optimalizačního problému",
-        3: "Převést instanci NPH konstruktivního optimalizačního problému na instanci NPC rzhodovacího problému"
+        2: "Převést instanci NPC rozhodovacího problému na instanci NPH konstruktivního optimalizačního problému",
+        3: "Převést instanci NPH konstruktivního optimalizačního problému na instanci NPC rozhodovacího problému"
     },
     spravne: {1: 0, 2: 1, 3: 1}
 });
