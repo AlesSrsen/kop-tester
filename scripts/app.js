@@ -6,7 +6,12 @@
 
     function shuffleArray(array) {
         for (var i = array.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1));
+	        var j;
+	        if (i !== array.length - 1) {
+		        j = Math.floor(Math.random() * (i + 1));
+	        } else {
+		        j = 1;
+	        }
             var temp = array[i];
             array[i] = array[j];
             array[j] = temp;
@@ -56,7 +61,7 @@
         $scope.totalOK = 0;
         var tmpQQ;
 
-        var OTAZKY;
+        var QUESTIONS;
 
         $scope.reset = function () {
             $scope.userText = "";
@@ -71,7 +76,7 @@
             $scope.question = [];
             $scope.textAnswer = "";
 
-            $scope.questionText = questions.otazka;
+            $scope.questionText = questions.question;
 
             if (questions.note) {
                 $scope.note = questions.note;
@@ -79,22 +84,22 @@
                 $scope.note = "";
             }
 
-            angular.forEach(questions.odpovedi, function (value, key) {
+            angular.forEach(questions.answers, function (value, key) {
 
                 fin.push({
                     text: value,
-                    isCorrect: questions.spravne[iter] === 1
+                    isCorrect: questions.correct[iter] === 1
                 });
 
                 iter++;
             });
 
-            if (questions.odpoved) {
-                $scope.textAnswer = questions.odpoved;
+            if (questions.answer) {
+                $scope.textAnswer = questions.answer;
             }
 
             $scope.question = fin;
-            $scope.total = OTAZKY.length;
+            $scope.total = QUESTIONS.length;
         };
 
 
@@ -118,8 +123,8 @@
             if (f === true) {
                 $scope.totalErrors++;
 
-                OTAZKY.push(tmpQQ);
-                OTAZKY = shuffleArray(OTAZKY);
+                QUESTIONS.push(tmpQQ);
+                QUESTIONS = shuffleArray(QUESTIONS);
             } else {
                 $scope.totalOK++;
             }
@@ -131,8 +136,8 @@
         };
 
         (function () {
-            OTAZKY = shuffleArray(otazky);
-            $scope.setQuestions(OTAZKY.pop());
+            QUESTIONS = shuffleArray(questions);
+            $scope.setQuestions(QUESTIONS.pop());
         })();
 
 
@@ -142,8 +147,8 @@
         };
 
         $scope.nextWrong = function () {
-            OTAZKY = shuffleArray(OTAZKY);
-            OTAZKY.push(tmpQQ);
+	        QUESTIONS.push(tmpQQ);
+            QUESTIONS = shuffleArray(QUESTIONS);
 
             $scope.totalErrors++;
             $scope.next();
@@ -157,7 +162,7 @@
 
             $scope.ss = false;
             $scope.selection = [];
-            $scope.setQuestions(OTAZKY.pop());
+            $scope.setQuestions(QUESTIONS.pop());
             $scope.reset();
         };
 
