@@ -432,14 +432,6 @@ otazky.push({
 });
 
 otazky.push({
-    otazka: "Jakým způsobem lze dokázat, že daný problém nepatří do NPC?",
-    odpoved: "Dokážu, že patří do P (dokážu vyřešit na deterministickém turingově stroji v polynomiálním čase)<br>"+
-            "Dokážu, že není v NP (dokážu vyřešit na nedeterministickém turingově stroji v polynomiálním čase)<br>"+
-            "Problém není převoditelný na SAT.",
-    note: "Všechny problémy v NPC jsou navzájem ekvivalentní a tedy musejí být převoditelné na SAT."
-});
-
-otazky.push({
     otazka: "Popište graf stavového prostoru pro problém obchodního cestujícího (TSP). Co jsou uzly v tomto grafu, co hrany?",
     odpoved: "Uzly - volba Hamiltonovy kružnice (obecně podgraf grafu s městy)<br>Hrany - Operace přechodu mezi těmito kružnicemi (dvojitá záměna uzlů…)"
 });
@@ -547,7 +539,7 @@ otazky.push({
 
 otazky.push({
     otazka: "Co jsou to greedy algoritmy?",
-    odpoved: "Algoritmus v každém svém kroku vybírá lokální optimum, přičemž existuje šance, že takto nalezne optimum globální. Příklad: Heuristika cena/váha u problému batohu. "
+    odpoved: "Algoritmus v každém svém kroku vybírá lokální optimum, přičemž existuje šance, že takto nalezne optimum globální. Nevrací se do již navštívených stavů. Příklad: Heuristika cena/váha u problému batohu. "
 });
 
 

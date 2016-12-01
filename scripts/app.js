@@ -73,7 +73,7 @@
 
             $scope.questionText = questions.otazka;
 
-            if(questions.note) {
+            if (questions.note) {
                 $scope.note = questions.note;
             } else {
                 $scope.note = "";
@@ -142,8 +142,8 @@
         };
 
         $scope.nextWrong = function () {
-            OTAZKY.push(tmpQQ);
             OTAZKY = shuffleArray(OTAZKY);
+            OTAZKY.push(tmpQQ);
 
             $scope.totalErrors++;
             $scope.next();
