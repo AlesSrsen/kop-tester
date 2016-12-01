@@ -23,14 +23,14 @@
     <script type="text/javascript" src="scripts/app.js"></script>
 
     <link rel="stylesheet" href="style/main.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/font-awesome.min.css">
 </head>
 
 
 <body ng-app="paaApp">
 
-<div class="container" ng-controller="NewsController">
+<div class="container" ng-controller="QuestionsController">
 
 
     <div class="row">
@@ -112,7 +112,7 @@
                 <div class="btn-group" role="group">
                     <button type="button" class="btn btn-primary"
                             ng-disabled="ss"
-                            ng-click="solve(selectedFruits)">
+                            ng-click="solve(selectedAnswers)">
                         Vyhodnotit
                     </button>
                 </div>
@@ -147,10 +147,10 @@
                     <small>
                         <a href="index.html">Reset testeru</a>
                         |
-                        listopad 2015
+                        prosinec 2016
                         |
                         <a href="https://gitlab.com/turimenrat/paa-tester-2" target="_blank">
-                            Zdrojové kódy na Gitlabu
+                            Zdrojové kódy na Gitlabu (stará verze)
                         </a>
                     </small>
                 </p>

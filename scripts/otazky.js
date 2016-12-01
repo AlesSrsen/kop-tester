@@ -87,20 +87,20 @@ otazky.push({
 otazky.push({
     otazka: "Zaškrtněte správná tvrzení:",
     odpovedi: {
-        1: "Pro některé NP úplné problémy existuje polynomiální algoritmus (pro det. Turingův stroj)",
-        2: "Certifikát NP úplných problémů je možno zkontrolovat v polynomiálním čase (det Turingovým strojem)",
-        3: "NP úplné problémy jsou řešitelné v polynomiálním čase nedet. Turingovým strojem"
+        1: "Pro některé NPC problémy existuje polynomiální algoritmus (pro det. Turingův stroj)",
+        2: "Certifikát NPC problémů je možno zkontrolovat v polynomiálním čase (det Turingovým strojem)",
+        3: "NPC problémy jsou řešitelné v polynomiálním čase nedet. Turingovým strojem"
     },
     spravne: {1: 0, 2: 1, 3: 1}
 });
 otazky.push({
     otazka: "Zaškrtněte správná tvrzení:",
     odpovedi: {
-        1: "NPC problémy jsou ty nejtěžsí rozhodovací kombinatorické problémy",
+        1: "NPC problémy jsou ty nejtěžší rozhodovací kombinatorické problémy",
         2: "Všechny P problémy lze řešit v polynomiálním čase (det. Turingovým strojem)",
-        3: "Pro některé NP úplné problémy existuje polynomiální algoritmus (pro deterministický Turingův stroj)"
+        3: "Pro některé NPC problémy existuje polynomiální algoritmus (pro deterministický Turingův stroj)"
     },
-    note: "NPC problémy NEjsou ty nejtěžsí rozhodovací kombinatorické problémy, to jsou NPH",
+    note: "NPC problémy NEjsou ty nejtěžší rozhodovací kombinatorické problémy",
     spravne: {1: 0, 2: 1, 3: 0}
 });
 otazky.push({
@@ -131,7 +131,6 @@ otazky.push({
         2: "Certifikát NP problémů se dá zkontrolovat v polynomiálním čase",
         3: "NP problémy jsou řešitelné v polynomiálním čase nedeterministickým turingovým strojem"
     },
-    note: "P patří do NP --> P jsou ty některé problémy které lze řešit v polynomiálním čase",
     spravne: {1: 1, 2: 1, 3: 1}
 });
 otazky.push({
@@ -179,29 +178,43 @@ otazky.push({
 
 otazky.push({
     otazka: "A) Dokažte, že rozhodovací verze problému \"minimum bin packing\" patří do NP.<br>" +
-    "B) Navrhněte pro tento problém konfigurační proměnné<br>" +
+    "B) Navrhněte pro tento problém konfigurační proměnné.<br>" +
     "C) Co je zde certifikát? Jak jej ověřím?",
-    odpoved: "Aby byl problém v NP, musí jít v polyn. čase ověřit jeho certifikát. Certifikátem zvolíme pole $A$ velikosti $n$, kde na pozici $A[n]$ je číslo kontejneru, ve kterém se machází daná věc $n$." +
-    "Ověření proběhne tak, že projdu pole $A$ a sečtu váhy věci v každém kontejneru. Takhle vzniklé váhy porovnám s kapacitami kontejnerů ze zadání. Složitost je asi $O(n+n)$ (sčítání a porovnávání), což je polynomiální. Pole $A$, kde si pro každou věc pamatuju, ve kterém je kontejneru. Certifikát je konkrétní ohodnocení konfiguračních proměnných, ověření proběhne tak, jak je naznačeno v důkazu, že je problém NP",
+    odpoved: "Aby byl problém v NP, musí jít v polyn. čase ověřit jeho certifikát. Certifikátem zvolíme pole $A$ velikosti $n$, kde na pozici $A[n]$ je číslo kontejneru, ve kterém se machází daná věc $n$.<br" +
+    "Ověření proběhne tak, že projdu pole $A$ a sečtu váhy věci v každém kontejneru. Takhle vzniklé váhy porovnám s kapacitami kontejnerů ze zadání. Složitost je $O(n)$ (sčítání a porovnávání), což je polynomiální. Pole $A$, kde si pro každou věc pamatuju, ve kterém je kontejneru. Certifikát je konkrétní ohodnocení konfiguračních proměnných, ověření proběhne tak, jak je naznačeno v důkazu, že je problém NP.",
     note: "<b>Minimum bin packing problem</b> = Je dána množina $n$ věcí a pro každou věc její velikost. Je možné všechny věci umístit do nejvýše $K$ kontejnerů o kapacitě $B$ každý?"
 });
 otazky.push({
     otazka: "A) Dokažte, že optimalizační problém obchodního cestujícího (TSP-O) patří do NPO.<br>B) Vyjmenujte jeho konfigurační proměnné<br>C) Co je zde certifikátem?",
-    odpoved: " Problém se odvíjí od obchodního cestujícího, jehož certifikát jsme schopni ověřit v polynomiálním čase a dá se převést na SAT (že SAT je NPC dokazuje COOKova věta), je tedy NP. Dále optimalizujeme na „nejkratší cestu“ a tak dostáváme NPO. <br> b) vektor obsahující posloupnost uzlů <br> c) cert =  posloupnost uzlů splňující omezující podmínku s nejkratší cestou ; omezující podmínky =  cesta musí být uzavřená a každý uzel navštívit právě jednou "
+    odpoved: "Optimalizační problém Π patří do třídy NPO, jestliže splňuje následující podmínky:<br><ul>"+
+    "<li>velikost výstupu instance je omezena polynomem ve velikosti instance (tj. výstup lze zapsat v polynomiálním čase),</li>"+
+    "<li>problém, zda daná konfigurace je řešením, patří do P (tj. omezující podmínky lze vyhodnotit v polynomiálním čase),</li>"+
+    "<li>optimalizační kritérium lze vyhodnotit v polynomiálním čase</li></ul><br>"+
+	"b) Vyjmenujte jeho konfigurační proměnné - vektor obsahující posloupnost uzlů<br>"+
+	"c1) Co je certifikátem optimalizační verze tohoto problému? - Certifikát optimalizační verze, tj. konfiguraci, která dává optimální řešení, jistě nelze ověřit v polynomiálním čase. Musíme totiž zjistit, zda je skutečně optimální, což je problém TSP-O samotný.<br>"+
+	"c2) Co jsou omezující podmínky optimalizační verze tohoto problému? - Cesta musí být uzavřená a každý uzel navštívit právě jednou"
 });
 otazky.push({
     otazka: "A) Dokažte, že optimalizační problém uzlového pokrytí grafu patří do NPO<br>B) Vyjmenujte jeho konfigurační proměnné<br>C) Co je zde certifikátem?",
-    odpoved: "TODO:Neznama odpoved"
+    odpoved: "Optimalizační problém Π patří do třídy NPO, jestliže splňuje následující podmínky:<br><ul>"+
+    "<li>velikost výstupu instance je omezena polynomem ve velikosti instance (tj. výstup lze zapsat v polynomiálním čase),</li>"+
+    "<li>problém, zda daná konfigurace je řešením, patří do P (tj. omezující podmínky lze vyhodnotit v polynomiálním čase),</li>"+
+    "<li>optimalizační kritérium lze vyhodnotit v polynomiálním čase</li></ul><br>"+
+    "b) Vyjmenujte jeho konfigurační proměnné - vektor obsahující posloupnost vrcholů<br>"+
+	"c1) Co je certifikátem optimalizační verze tohoto problému? - Certifikát optimalizační verze, tj. konfiguraci, která dává optimální řešení, jistě nelze ověřit v polynomiálním čase. Musíme totiž zjistit, zda je skutečně optimální, což je problém TSP-O samotný.<br>"+
+	"c2) Co jsou omezující podmínky optimalizační verze tohoto problému? - Cesta musí být uzavřená a každý uzel navštívit právě jednou"
 });
 otazky.push({
     otazka: "A) Dokažte, že problém splnitelnosti booleovské formule (SAT) patří do NP.<BR>B) Vyjmenujte jeho konfigurační proměnné.<BR>C) Co je certifikátem rozhodovací verze tohoto problému?",
-    odpoved: "<ul><li>A) Abychom dokázali, že je problém v NP, musíme nalézt certifikát a certifikát ověřit v polynomiálním čase.</li>" +
+    odpoved: "<ul><li>A) Abychom dokázali, že je problém v NP, musíme certifikát ověřit v polynomiálním čase.</li>" +
     "<li>B) Bitový vektor (ohodnocení $true/false$ jednotlivých proměnných v SATu)</li>" +
     "<li>C) Certifikátem je takové ohodnocení (takový bitový vektor), pro který je daný SAT = 1</li></ul>"
 });
 otazky.push({
     otazka: "A) Dokažte, že optimalizační problém nalezení max. kliky v grafu patří do NPO.<br>B) Vyjmenujte jeho konfigurační proměnné<br>C) Co jsou zde omezující podmínky?<br>",
-    odpoved: "A) Lze převést na SAT (NPC) a tudíž je v NP. Protože se jedná o optimalizační problém spadá do NPO (!Dle Fit-Wiki je A) možná špatně.!)<br>" +
+    odpoved: "A) Optimalizační problém $\\varPi$ patří do třídy NPO, jestliže splňuje následující podmínky: <br> I.) Velikost výstupu instance je omezena polynomem ve velikosti instance -- výstup lze zapsat v polynomiálním čase; <br>" +
+    "II.) Problém, zda daná konfigurace je řešením, patří do P -- omezující podmínky lze vyhodnotit v polynomiálním čase; <br>" +
+    "III.) Hodnotu optimalizačního kritéria pro každé řešení každé instance lze vypočíst v polynomiálním čase -- optimalizační kritérium lze vyhodnotit v polynomiálním čase.<br><br>" +
     "B) Vektor všech uzlů, který nabývá $1$ na $i$-tém místě, pokud je $i$-tý uzel momentálně obsažen v klice, $0$ pokud není obsažen.<br>Vektor $X = {X_1 … X_n}$, kde $N$ je rovno počtu uzlů grafu. Proměná $X_i$ nabývá hodnot $0/1$, podle toho zda daný uzel tvoří součást kliky.<br>" +
     "C) Podgraf musí být úplný<br>",
     note: "Maximální klika = maximální úplný podgraf. Klika je takový podgraf nějakého grafu, který je úplným grafem, tzn. jehož všechny vrcholy jsou spojeny hranou se všemi zbylými."
@@ -210,7 +223,7 @@ otazky.push({
     otazka: "Pro všechny problémy ve třídě NPH platí (za předpokladu, že $NP \\neq P$)",
     odpovedi: {
         1: "Neexistuje pro ně polynomiální algoritmus pro det. Turingův stroj",
-        2: "Jejich optimalizační kritérium se dá vždy vypočítat v plynomiálním čase (det. Turingovým strojem)",
+        2: "Jejich optimalizační kritérium se dá vždy vypočítat v polynomiálním čase (det. Turingovým strojem)",
         3: "Jsou řešitelné v polynomiálním čase nedet. tur. stroje"
     },
     spravne: {1: 1, 2: 1, 3: 1}
@@ -224,7 +237,7 @@ otazky.push({
         2: "Neznáme pro ně polynomiální algoritmus pro deterministický Turingův stroj",
         3: "Je možné zkontrolovat omezující podmínky v polynomiálním čase"
     },
-    spravne: {1: 0, 2: 1, 3: 1}
+    spravne: {1: 0, 2: 1, 3: 0}
 });
 
 otazky.push({
@@ -244,7 +257,7 @@ otazky.push({
         2: "Třída problémů, pro které lze zkontrolovat certifikát v polynomiálním čase",
         3: "Třída těch nejtěžších existujících problémů"
     },
-    spravne: {1: 1, 2: 1, 3: 0}
+    spravne: {1: 1, 2: 0, 3: 0}
 });
 
 otazky.push({
@@ -279,7 +292,10 @@ otazky.push({
 
 otazky.push({
     otazka: "Jakým způsobem lze dokázat, že daný problém patří do NPC?",
-    odpoved: "Dokážeme že problém je v NP (nalezneme certifikát, který dokážeme ověřit v polynomiálním čase)<br>Dokážeme převést SAT na náš problém"
+    odpoved: "Dokážeme převést jiné NPC na náš problém.<br>"+
+    		"NPC -> $\\varPi$<br>"+
+    		"$\\varPi$ náleží NP",
+    note: "Všechny NPC problémy na sebe jsou navzájem převoditelné"
 });
 
 otazky.push({
@@ -316,7 +332,7 @@ otazky.push({
 });
 
 otazky.push({
-    otazka: "Co je to kombinatorický problém, čím je charakterizován",
+    otazka: "Co je to kombinatorický problém, čím je charakterizován?",
     odpoved: "<p>Kombinatorický problém je charakterizován:</p><ul>" +
     "<li>Vstupní proměnné (např.: seznam děr)</li>" +
     "<li>Výstupní proměnné (např.: pořadí děr)</li>" +
@@ -325,7 +341,7 @@ otazky.push({
     "<li>Optimalizační kritérium (např.: nejkratší!)</li>" +
     "</ul><br>" +
     "<p>" +
-    "Kombinatorický problém může být I.) Rozhodovací; II.) Konstruktivní; III.) Enumerační" +
+    "Kombinatorický problém může být <ul><li>I.) Rozhodovací</li> <li>II.) Konstruktivní</li> <li>III.) Enumerační</li></ul>" +
     "</p>"
 });
 
@@ -347,7 +363,9 @@ otazky.push({
 
 otazky.push({
     otazka: "Co jsou to co-NP problémy?",
-    odpoved: "Problémy mimo NP. Nemáme pro ně certifikát. Příklad: Ověření nesplnitelnosti SAT."
+    odpoved: "co-NP je třída problémů, ﻿﻿u kterých existuje v polynomiálním čase ověřitelný důkaz (tzv. protipříklad), že problém nemá řešení.<br>"+
+			"Vysvětlení: u NP vyžadujeme snadno ověřitelný certifikát typu ANO, u co-NP certifikát typu NE. co-NP lze vytvořit negací NP.<br>"+
+			"Příklad: Ověření nesplnitelnosti SAT."
 });
 
 otazky.push({
@@ -378,27 +396,19 @@ otazky.push({
 });
 
 otazky.push({
-    otazka: "Jak zjistím, že moje jednoduchá lokální metoda má tendenci rychle uváznout v lokálním minimu",
-    odpovedi: {
-        1: "Při náhodných restartech vždy dojdu ke stejnému výsledku",
-        2: "Při náhodných restartech dosažený výsledek příliš závisí na počátečním stavu"
-    },
-    spravne: {1: 0, 2: 1}
-});
-
-otazky.push({
     otazka: "Je dán problém $Π$. $Q(S)$ budiž hodnota optimalizačního kritéria řešení $S$ instance $I$ tohoto problému, dokázat, že algoritmus řešící tento problém je aproximativní. Musíme tedy:",
     odpovedi: {
         1: "Pro každou instanci $I$ algoritmus skončí v polynomiálním počtu kroků",
         2: "Relativní kvalita algoritmu je konečná",
         3: "Relativní kvalita algoritmu $< 1$",
-        4: "$Π \\in NP$"
+        4: "$Π \\in NP$",
+        5: "Relativní chyba algoritmu $< 1$",
     },
-    spravne: {1: 1, 2: 1, 3: 0, 4: 0}
+    spravne: {1: 1, 2: 1, 3: 0, 4: 0, 5: 1}
 });
 
 otazky.push({
-    otazka: "Nechť daná instance kombinatorického problému nemá řešení. Prohledá metoda „nejlepší nejdříve“ v takovém případě každý stavový prostor?",
+    otazka: "Nechť daná instance kombinatorického problému nemá řešení. Prohledá metoda „nejlepší nejdříve“ v takovém případě celý stavový prostor?",
     odpovedi: {
         1: "Ano",
         2: "Ne"
@@ -408,23 +418,24 @@ otazky.push({
 });
 otazky.push({
     otazka: "Jaká je pravděpodobnost nalezení řešení rozhodovacího SAT problému pro plně randomizovaný algoritmus, který opakovaně čistě náhodně generuje ohodnocení vstupních proměnných?",
-    odpoved: "$\\left(1-\\frac{1}{2^{k}}\\right)*c$"
+    odpoved: "$\\left(1-\\frac{1}{2^{k}}\\right)^c$"
 });
 
 otazky.push({
     otazka: "Jaký je rozdíl v asymptotické složitosti metod \"backtracking\" (prohledávání s návratem) a \"forward-checking\" (dopředná kontrola)?",
-    odpoved: "Backtracking má horší nebo stejnou asymptotickou složitost než forward checking.<br>" +
-    "<b>Správná odpověď je „žádný“</b>, asymptoticky jsou obě metody stejně obtížné."
+    odpoved: "Žádný, asymptoticky jsou obě metody stejně obtížné."
 });
 
 otazky.push({
     otazka: "Mějme optimalizační problém unátního pokrytí. Je dána binární (obsahující pouze hodnoty \"0\" a \"1\") matice $A$ o rozměrech $(m,n)$. $m$ je počet řádků, které mají být pokryty podmnožinou sloupců (z $n$). Daný řádek ($i$) je pokryt sloupcem $j$, pokud $A[i,j] = 1$. Problém nalezení minimálního pokrytí, tj. nalezení minimální podmnožiny sloupců, které pokrývají všechny řádky, patří do NPH. Zformulujte rozhodovací verzi tohoto problému, která má srovnatelnou složitost.",
-    odpoved: "TODO:nezadana spravna odpoved"
+    odpoved: "Je možné pokrýt všechny řádky nejvýše K<=n sloupci?"
 });
 
 otazky.push({
     otazka: "Jakým způsobem lze dokázat, že daný problém nepatří do NPC?",
-    odpoved: "Problém není převoditelný na SAT.",
+    odpoved: "Dokážu, že patří do P (dokážu vyřešit na deterministickém turingově stroji v polynomiálním čase)<br>"+
+            "Dokážu, že není v NP (dokážu vyřešit na nedeterministickém turingově stroji v polynomiálním čase)<br>"+
+            "Problém není převoditelný na SAT.",
     note: "Všechny problémy v NPC jsou navzájem ekvivalentní a tedy musejí být převoditelné na SAT."
 });
 
@@ -449,7 +460,7 @@ otazky.push({
 
 otazky.push({
     otazka: "Jaká je pravděpodobnost splnění dané klauzule SAT problému o max. $k$ proměnných pro plně randomizovaný algoritmus, který opakovaně čistě náhodně generuje ohodnocení vstupních proměnných? Jaká bude pravděpodobnost splnění celé formule při $n$ klauzulích?",
-    odpoved: "$1-\\frac{1}{2^{k}}$"
+    odpoved: "$1-\\frac{1}{2^{k}}$, pokud má být splněna celá formule, tak $(1-\\frac{1}{2^{k}})^n$"
 });
 
 otazky.push({
@@ -458,22 +469,15 @@ otazky.push({
         1: "Existuje algoritmus řešící tyto problémy v polynomiálním čase exaktně",
         2: "Existuje algoritmus řešící tyto problémy v polynomiálním čase s libovolně malou chybou",
         3: "Patří do NPC",
-        4: "Existuje algoritmus řešící tyto problémy v polynomiálním čase exaktně",
-        5: "Existuje algoritmus řešící tyto problémy v polynomiálním čase s libovolně malou chybou",
-        6: "Jsou prodmnožinou APX",
-        7: "Patří do NPH"
+        4: "Jsou prodmnožinou APX",
+        5: "Patří do NPH"
     },
-    spravne: {1: 0, 2: 1, 3: 0, 4: 0, 5: 1, 6: 1, 7: 0}
+    spravne: {1: 0, 2: 1, 3: 0, 4: 1, 5: 0}
 });
 
 otazky.push({
     otazka: "Jaká je asymptotická složitost metody větví a hranic (B&B)? V nejobecnějším případě.",
     odpoved: "$O(2^n)$ (= bruteforce)"
-});
-
-otazky.push({
-    otazka: "Mějme optimalizační problém unátního pokrytí, je dána binární (obsahující pouze hodnoty „0“ a „1“) matice A o rozměrech (m, n). m je počet řádků, které mají být pokryty podmnožinou sloupců (z n). Daný řádek (i) je pokryt sloupcem j, pokud A[i, j] = 1. Problém nalezení minimálního pokrytí, tj. nalzezení minimální podmnožiny sloupců, které pokrývají všechny řádky, patří do NPH. Zformulujte rozhodovací verzi tohoto problému, která má srovnatelnou složitost.",
-    odpoved: "TODO:nezadana odpoved"
 });
 
 otazky.push({
@@ -517,7 +521,7 @@ otazky.push({
 
 otazky.push({
     otazka: "Uveďte příklad grafu stavového prostoru pro problém nalezení kliky v grafu (max. úplný podgraf). Co jsou uzly v tomto grafu, co hrany?",
-    odpoved: "Uzly jsou stavy, které reprezentují podgrafy grafu, jehož pokrytí hledáme<br>Hrany jsou operace, které reprezentují přidání/odebrání hrany z podgrafů",
+    odpoved: "Uzly jsou stavy, které reprezentují podgrafy grafu, jehož pokrytí hledáme.<br>Hrany jsou operace, které reprezentují přidání/odebrání uzlu z podgrafů.",
     note: "Maximální klika = maximální úplný podgraf. Klika je takový podgraf nějakého grafu, který je úplným grafem, tzn. jehož všechny vrcholy jsou spojeny hranou se všemi zbylými."
 });
 
@@ -538,7 +542,7 @@ otazky.push({
 otazky.push({
     otazka: "Co jsou to pseudopolynomiální algoritmy? Uveďte příklad.",
     odpoved: "Algoritmus, jehož počet kroků závisí polynomiálně na velikosti instance, ale závisí dále na parametru, který s velikostí instance nesouvisí, nazýváme pseudopolynomiálním.<br>" +
-    "Příklad: Složitost je $\\mathcal{O}\\left(n*M\\right)$ a $M$ nesouvisí s velikostí instance. "
+    "Příklad: Řešení problému batohu dynamickým programováním (ať už s dekompozicí dle váhy nebo ceny). "
 });
 
 otazky.push({
@@ -549,7 +553,7 @@ otazky.push({
 
 otazky.push({
     otazka: "Dokažte nebo vyvraťte, že konstruktivní optimalizační problém batohu patří do NPO.",
-    odpoved: "Optimalizační problém $\\varPi$ patří do třídy NPO, jestliže splňuje následující podmínky: <br><br> I.) Velikost výstupu instance je omezena polynomem ve velikosti instance -- výstup lze zapsat v polynomiálním čase; <br>" +
+    odpoved: "Optimalizační problém $\\varPi$ patří do třídy NPO, jestliže splňuje následující podmínky:<br> I.) Velikost výstupu instance je omezena polynomem ve velikosti instance -- výstup lze zapsat v polynomiálním čase; <br>" +
     "II.) Problém, zda daná konfigurace je řešením, patří do P -- omezující podmínky lze vyhodnotit v polynomiálním čase; <br>" +
     "III.) Hodnotu optimalizačního kritéria pro každé řešení každé instance lze vypočíst v polynomiálním čase -- optimalizační kritérium lze vyhodnotit v polynomiálním čase."
 });
@@ -565,7 +569,7 @@ otazky.push({
     otazka: "Jak zjistím, že moje jednoduchá lokální metoda má tendenci rychle uváznout v lokálním minimu?",
     odpovedi: {
         1: "Při náhodných restartech vždy dojdu ke stejnému výsledku",
-        2: "Při náhodných restartech dosažený výdledek příliš závisí na počátečním stavu"
+        2: "Při náhodných restartech dosažený výsledek příliš závisí na počátečním stavu"
     },
     spravne: {1: 0, 2: 1}
 });
@@ -614,7 +618,7 @@ otazky.push({
         3: "Prohledá celý stavový prostor, pokud neexistuje řešení",
         4: "Používá frontu"
     },
-    spravne: {1: 0, 2: 1, 3: 1, 4: 1}
+    spravne: {1: 0, 2: 1, 3: 1, 4: 0}
 });
 
 otazky.push({
@@ -687,7 +691,7 @@ otazky.push({
 
 otazky.push({
     otazka: "Jakým způsobem lze dokázat, že daný problém patří do NPH?",
-    odpoved: "Má-li patřit do NPH, musí patřit buď do NPC nebo do NPOC. To zjistím tak, že převedu SAT na náš problém, pokud se mi to podaří a za předpokladu, že můj problém patří do NP, vím, že patří do NPC a tedy i do NPH. (Jsem schopný ověřit certifikát v polynomiálním čase)"
+    odpoved: "Potřebujeme jen převést SAT na ten náš problém (SAT je NPC → na něj lze převést každý NP)."
 });
 
 otazky.push({
@@ -709,7 +713,10 @@ otazky.push({
 
 otazky.push({
     otazka: "Dokažte nebo vyvraťte, že konstruktivní optimalizační problém nalezení minimálního uzlového pokrytí patří do NPO.",
-    odpoved: "N/A TODO: odpoved jeste nebyla zadana"
+    odpoved: "Optimalizační problém Π patří do třídy NPO, jestliže splňuje následující podmínky:<br><ul>"+
+    "<li>velikost výstupu instance je omezena polynomem ve velikosti instance (tj. výstup lze zapsat v polynomiálním čase),</li>"+
+    "<li>problém, zda daná konfigurace je řešením, patří do P (tj. omezující podmínky lze vyhodnotit v polynomiálním čase),</li>"+
+    "<li>optimalizační kritérium lze vyhodnotit v polynomiálním čase</li></ul>"
 });
 
 otazky.push({
@@ -743,4 +750,64 @@ otazky.push({
         3: "Převést NPH problém na jiný NPH problém v polynomiálním čase"
     },
     spravne: {1: 1, 2: 0, 3: 1}
+});
+
+otazky.push({
+    otazka: "Co je APX, FPTAS, PTAS, jaké jsou mezi nimi rozdíly?",
+    odpoved: "<b>Algoritmus APR</b> pro problém N je R-aproximativní (eps-aproximativní), jestliže každou instanci N vyřeší v polynomiálním čase s relativní kvalitou R (relativní chybou eps).<br>"+
+    		"<b>PTAS (Polynomial Time Approximation Scheme)</b> - Algoritmus APR, který pro každé 1 > eps > 0 vyřeší každou instanci problému N s relativní chybou nejvýše eps v čase polynomiálním v |I| nazýváme polynomiální aproximační schéma problému N.<br>"+
+    		"<b>FPTAS (Fully Polynomial Time Approximation Scheme)</b> - Polynomiální aproximační schéma APR, jeho čas výpočtu závisí polynomiálně na 1/eps , nazýváme plně polynomiální aproximační schéma."
+});
+
+otazky.push({
+    otazka: "Třída NC1, co to je a jak se díky tomu dělá obvodová složitost?",
+    odpoved: "NC = Nick's class je množina rozhodovacích problémů rozhodnutelných v polylogaritmickém čase na paralelním počítači s polynomiálním počtem procesorů."
+});
+
+otazky.push({
+    otazka: "Co je třída AC0?",
+    odpoved: "Třída AC0 obsahuje jazyky rozpoznatelné booleovskými obvody s hloubkou O(\log^i n) = O(\log^0 n) = O(1) a polynomiálním počtem AND a OR hradel s neomezeným počtem vstupů (unlimited fan-in hradla). Negace je jen na vstupech, AND a OR se střídají."
+});
+
+otazky.push({
+    otazka: "Co jsou to konfigurační a výstupní proměnné kombinatorického problému? Jaký je mezi nimi rozdíl?",
+    odpoved: "<ul><li><b>Konfigurační proměnné</b> jsou proměnné, kterými dokážu popsat jeden stav</li>"+
+            "<li><b>Výstupní proměnné</b> jsou proměnné, kterými dokážu popsat výstup algoritmu</li></ul>"+
+            "Mohou být shodné (konstruktivní problémy), nebo odlišné (rozhodovací problémy - konfigurační proměnné jsou třeba vektor a výstupní proměnná je ano/ne)"
+});
+
+otazky.push({
+    otazka: "Co všechno je nutné dokázat, abychom mohli daný problém zařadit do třídy PTAS (polynomiální aproximační schéma)?",
+    odpoved: "Musí to být aproximativní algoritmus (APR), který pro každé epsilon vyřeší každou instanci problému s relativní chybou nejvýše epsilon v polynomiálním čase v |I|.<br>"+
+            "Jde o podmnožinu třídy APX - u té stačilo řešení s relativní kvalitou R a chybou epsilon, nyní je omezení na polynomiální dobu výpočtu podle velikosti instance."
+});
+
+otazky.push({
+    otazka: "Co všechno je nutné dokázat, abychom mohli daný problém zařadit do třídy FPTAS (plně polynomiální aproximační schéma)?",
+    odpoved: "Aby byl problém FPTAS, tak musí být PTAS a jeho čas výpočtu musí být polynomiálně závislý na 1/eps."
+});
+
+otazky.push({
+    otazka: "Co jsou NPI problémy?",
+    odpoved: "Problémy, které nelze vyřešit v polynomiálním čase pomocí det. turingova stroje a zároveň na ně nelze redukovat nějaký NPC problém (např. nelze na ně převést SAT).<br>"+
+            "Jinými slovy: Jsou to NP, ale nejsou v P ani v NPC."
+});
+
+otazky.push({
+    otazka: "Co je APX redukce? Co je APX úplný problém? Co je NPO-úplný problém? Jaký mezi sebou mají vztah?",
+    odpoved: "<ul><li>APX redukce - převod jednoho APX problému na druhý APX problém se zachováním aproximace</li>"+
+            "<li>APX úplný problém - problém, který patří do třídy APX a zároveň je APX těžký. (APX těžký je problém, na který jdou APX redukovat všechny ostatní APX problémy)</li>"+
+            "<li>NPO-úplný problém - problém, který patří do třídy NPO a zároveň je NPO těžky (analogicky s APX)</li>"+
+            "<li>Vztah ? TODO</li></ul>"
+});
+
+otazky.push({
+    otazka: "Co je báze v obvodové složitosti?",
+    odpoved: "Množina komutativních Booleových funkcí (hradel), ze kterých konstruuji Booleův obvod (ohodnocuji každý vnitřní uzel zvoleným hradlem z báze)."
+});
+
+otazky.push({
+    otazka: "Co je to komunikační složitost a k čemu je dobrá?",
+    odpoved: "Komunikační složitost se používá při vyhodnocení složitosti distribuovaných/paralelních algoritmů.<br>"+
+            "Udává, kolikrát si musí jednotlivé výpočetní jednotky vyměnit informace, než dojde ke konci algoritmu/výpočtu."
 });

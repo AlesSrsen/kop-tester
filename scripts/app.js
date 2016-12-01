@@ -47,7 +47,7 @@
         };
     });
 
-    paaApp.controller('NewsController', ['$scope', function ($scope) {
+    paaApp.controller('QuestionsController', ['$scope', function ($scope) {
 
         var currentQuestionIndex = 0;
         $scope.selection = [];
@@ -173,9 +173,9 @@
         };
 
 
-        // toggle selection for a given fruit by name
-        $scope.toggleSelection = function toggleSelection(fruitName) {
-            var idx = $scope.selection.indexOf(fruitName);
+        // toggle selection for a given answer by name
+        $scope.toggleSelection = function toggleSelection(answer) {
+            var idx = $scope.selection.indexOf(answer);
 
             // is currently selected
             if (idx > -1) {
@@ -184,7 +184,7 @@
 
             // is newly selected
             else {
-                $scope.selection.push(fruitName);
+                $scope.selection.push(answer);
             }
         };
 
