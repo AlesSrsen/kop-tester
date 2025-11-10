@@ -1,0 +1,28 @@
+{
+  "name": "kop-tester",
+  "version": "0.0.1",
+  "description": "Tester for questions in NI-KOP course",
+  "keywords": [
+    "KOP"
+  ],
+  "homepage": "https://github.com/AlesSrsen/kop-tester#readme",
+  "bugs": {
+    "url": "https://github.com/AlesSrsen/kop-tester/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/AlesSrsen/kop-tester.git"
+  },
+  "license": "ISC",
+  "author": "Aleš Sršeň",
+  "type": "module",
+  "main": "index.ts",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^7.2.2"
+  }
+}

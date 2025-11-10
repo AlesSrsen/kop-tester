@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>KOP tester</title>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({showMathMenu:false, tex2jax: {inlineMath: [['$','$']]}});
+
+
+    </script>
+
+    <script type="text/javascript"
+            async
+            src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/questions.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/bootstrap.min.css">
+    <link rel="stylesheet" href="style/font-awesome.min.css">
+</head>
+
+
+<body ng-app="paaApp">
+
+<div class="container" ng-controller="QuestionsController">
+    <div class="row">
+        <div class="col-md-12">
+            <a href="/list/index.html">Upravená verzia testeru s otázkami na jednej stránke</a>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <span dynamic="questionText"></span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <form action="">
+                        <div class="checkbox"
+                             ng-class="{'has-error': !isCorrect(qu) && ss, 'has-success': isCorrect(qu) && ss}"
+                             ng-repeat="qu in question">
+                            <label>
+                                <input type="checkbox" value="{{ qu }}"
+                                       ng-click="toggleSelection(qu)"
+                                       ng-disabled="ss"
+                                       ng-checked="selection.indexOf(qu) > -1">
+                                <span dynamic="qu.text"></span>
+
+                                <span ng-show="!isCorrect(qu) && ss">
+                                    <i class="fa fa-exclamation-triangle"></i>
+                                </span>
+
+                            </label>
+                        </div>
+                    </form>
+
+                    <div ng-if="note && ss">
+                        <br>
+
+                        <p>
+                            <span class="label label-primary">Poznámka:</span>
+                            <span dynamic="note"></span>
+                        </p>
+                    </div>
+
+                    <div ng-show="textAnswer">
+                        <textarea class="form-control" rows="5" ng-model="userText"></textarea>
+
+                        <div ng-if="ss">
+
+                            <br>
+
+                            <p class="well">
+                                <span dynamic="textAnswer"></span>
+                            </p>
+
+
+                            <div class="btn-group" role="group" aria-label="...">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-success"
+                                            ng-click="nextOK()">
+                                        <i class="fa fa-thumbs-up"></i>
+
+                                        Dobře
+                                    </button>
+                                </div>
+                                <div class="btn-group" role="group">
+                                    <button type="button"
+                                            ng-click="nextWrong()"
+                                            class="btn btn-danger">
+                                        <i class="fa fa-thumbs-down"></i>
+
+                                        Špatně
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="btn-group" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-primary"
+                            ng-disabled="ss"
+                            ng-click="solve(selectedAnswers)">
+                        Vyhodnotit
+                    </button>
+                </div>
+                <div class="btn-group" role="group" ng-if="!textAnswer">
+                    <button type="button"
+                            ng-click="next()"
+                            ng-disabled="!ss"
+                            class="btn btn-default">
+                        Další otázka
+                        <i class="fa fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <br>
+
+            <p>
+                Chybně: <span class="label label-danger">{{ totalErrors }}</span>, Správně: <span class="label label-success">{{ totalOK }}</span>,
+                Zbývá otázek: <span class="label label-default">{{ total }}</span>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="row">
+            <div class="col-md-12">
+
+                <hr>
+                <p>
+                    <small>
+                        <a href="index.html">Reset testeru</a>
+                        |
+                        prosinec 2016
+                        |
+                        <a href="https://gitlab.com/novacto3/paa-tester-2" target="_blank">
+                            Zdrojové kódy na Gitlabu
+                        </a>
+                        |
+                        <a href="https://github.com/AlesSrsen/kop-tester" target="_blank">
+                            Aktuálna stránka na GitHub
+                        </a>
+                    </small>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    <small>
+                        <a href="https://srsen.me" target="_blank">🐝 srsen.me</a>
+                    </small>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+
+<script type="text/javascript">
+    window.onbeforeunload = function confirmExit() {
+        return "Přerušit test?";
+    };
+</script>
+
+</body>
+</html>
