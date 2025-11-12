@@ -212,9 +212,18 @@ questions.push({
 });
 questions.push({
     question: "A) Dokažte, že optimalizační problém nalezení max. kliky v grafu patří do NPO.<br>B) Vyjmenujte jeho konfigurační proměnné<br>C) Co jsou zde omezující podmínky?<br>",
-    answer: "A) Optimalizační problém $\\varPi$ patří do třídy NPO, jestliže splňuje následující podmínky: <br> I.) Velikost výstupu instance je omezena polynomem ve velikosti instance -- výstup lze zapsat v polynomiálním čase; <br>" +
-    "II.) Problém, zda daná konfigurace je řešením, patří do P -- omezující podmínky lze vyhodnotit v polynomiálním čase; <br>" +
-    "III.) Hodnotu optimalizačního kritéria pro každé řešení každé instance lze vypočíst v polynomiálním čase -- optimalizační kritérium lze vyhodnotit v polynomiálním čase.<br><br>" +
+    answer: "A) Optimalizační problém $\\varPi$ patří do třídy NPO, jestliže splňuje následující podmínky: <br> I.) Velikost výstupu instance je omezena polynomem ve velikosti instance -- výstup lze zapsat v polynomiálním čase;" +`
+    Řešení je podmnožina vrcholů (S \subseteq V). Její velikost je (|S| \le |V| = n).
+Reprezentovat (S) lze například jako seznam indexů vrcholů (nebo bitový vektor délky (n)). Obě reprezentace mají velikost (O(n)) (resp. (O(n\log n)) bitů) a lze je **zapsat v polynomiálním čase**.
+` + "<br>" +
+    "II.) Problém, zda daná konfigurace je řešením, patří do P -- omezující podmínky lze vyhodnotit v polynomiálním čase; "+`
+    Dána instance (G) a kandidát (S\subseteq V). Ověření, že (S) je klika, spočívá v kontrole všech dvojic (u\neq v\in S), že ({u,v}\in E).
+
+* Naivně: (O(|S|^2)) dotazů do struktury pro „je ({u,v}\in E)?“
+* Při reprezentaci hran maticí sousednosti je každý dotaz (O(1)); při seznamu sousedů (O(\deg(u))) nebo pomocí hash-setu také průměrně (O(1)).
+  Celkově tedy **polynomiální čas** v (|V|+|E|).`+ " <br>" +
+    "III.) Hodnotu optimalizačního kritéria pro každé řešení každé instance lze vypočíst v polynomiálním čase -- optimalizační kritérium lze vyhodnotit v polynomiálním čase. "+`
+    Hodnotou kritéria je (|S|). To spočteme triviálně v (O(|S|)) (resp. je dáno implicitně délkou seznamu/počtem jedniček v bitovém vektoru).`+"<br><br>" +
     "B) Vektor všech uzlů, který nabývá $1$ na $i$-tém místě, pokud je $i$-tý uzel momentálně obsažen v klice, $0$ pokud není obsažen.<br>Vektor $X = {X_1 … X_n}$, kde $N$ je rovno počtu uzlů grafu. Proměná $X_i$ nabývá hodnot $0/1$, podle toho zda daný uzel tvoří součást kliky.<br>" +
     "C) Podgraf musí být úplný<br>",
     note: "Maximální klika = maximální úplný podgraf. Klika je takový podgraf nějakého grafu, který je úplným grafem, tzn. jehož všechny vrcholy jsou spojeny hranou se všemi zbylými."

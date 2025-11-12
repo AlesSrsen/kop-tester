@@ -1,12 +1,16 @@
-export type Question = TextQuestion | MultipleChoiceQuestion;
+export type Question = TextQuestion | MultipleChoiceQuestion
 
-type TextQuestion = {
-    question: string;
-    answer: string;
+type QuestionNote = {
+    note: string;
 }
 
-type MultipleChoiceQuestion = {
+export type TextQuestion = {
+    question: string;
+    answer: string;
+} & Partial<QuestionNote>;
+
+export type MultipleChoiceQuestion = {
     question: string;
     answers: { [key: number]: string };
     correct: { [key: number]: 0 | 1 };
-}
+} & Partial<QuestionNote>;
