@@ -1207,3 +1207,16 @@ examQuestions.push({
     }
 });
 
+examQuestions.push({
+    "question": "Turnajový výber ve standardním genetickém algoritmu:",
+    "answers": {
+        "1": "dává výsledky, které závisí na selekčním tlaku",
+        "2": "dává lepší výsledky než jiné metody selekce",
+        "3": "dává výsledky, které při správném nastavení jsou podobné jako při selekci správně nastavenou ruletou",
+    },
+    "correct": {
+        "1": 1,
+        "2": 0,
+        "3": 1
+    }
+});
