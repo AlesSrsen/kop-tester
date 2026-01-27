@@ -6,12 +6,7 @@
 
     function shuffleArray(array) {
         for (var i = array.length - 1; i > 0; i--) {
-	        var j;
-	        if (i !== array.length - 1) {
-		        j = Math.floor(Math.random() * (i + 1));
-	        } else {
-		        j = 1;
-	        }
+            var j = Math.floor(Math.random() * (i + 1));
             var temp = array[i];
             array[i] = array[j];
             array[j] = temp;
@@ -98,7 +93,8 @@
                 $scope.textAnswer = questions.answer;
             }
 
-            $scope.question = fin;
+            // Shuffle answers to randomize their order
+            $scope.question = shuffleArray(fin);
             $scope.total = QUESTIONS.length;
         };
 
@@ -147,7 +143,7 @@
         };
 
         $scope.nextWrong = function () {
-	        QUESTIONS.push(tmpQQ);
+            QUESTIONS.push(tmpQQ);
             QUESTIONS = shuffleArray(QUESTIONS);
 
             $scope.totalErrors++;
