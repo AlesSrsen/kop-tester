@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Přehled otázek – KOP tester</title>
+
+    <!-- Emoji Favicon -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
+
+    <!-- Tailwind CSS v4 -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <!-- MathJax Configuration -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({showMathMenu:false, tex2jax: {inlineMath: [['$','$']]}});
+    </script>
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    <!-- AngularJS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script type="text/javascript" src="scripts/questions.js"></script>
+
+    <link rel="stylesheet" href="style/main.css" />
+</head>
+
+<body ng-app="prehledApp" class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
+    <div class="max-w-5xl mx-auto px-4 py-8" ng-controller="PrehledController">
+        <!-- Header -->
+        <header class="mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold text-slate-800">
+                        📚 Přehled otázek
+                    </h1>
+                    <p class="text-slate-600 mt-1">
+                        Celkem {{ filteredQuestions.length }} z {{ allQuestions.length }}
+                        otázek
+                    </p>
+                </div>
+                <a href="index.html"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-colors shadow-sm">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 17l-5-5m0 0l5-5m-5 5h12" />
+                    </svg>
+                    Zpět na tester
+                </a>
+            </div>
+
+            <!-- Search and Filter -->
+            <div class="bg-white rounded-2xl shadow-lg border border-slate-200 p-4 md:p-6">
+                <div class="flex flex-col md:flex-row gap-4">
+                    <!-- Search Input -->
+                    <div class="flex-1 relative">
+                        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                        <input type="text" ng-model="searchQuery" ng-change="filterQuestions()"
+                            placeholder="Hledat v otázkách a odpovědích..."
+                            class="w-full pl-12 pr-4 py-3 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-slate-700" />
+                    </div>
+
+                    <!-- Expand All Button -->
+                    <div class="flex gap-2">
+                        <button type="button" ng-click="toggleExpandAll()"
+                            class="px-4 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-xl transition-colors border-2 border-slate-200">
+                            {{ allExpanded ? 'Sbalit vše' : 'Rozbalit vše' }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Questions List -->
+        <main class="space-y-4">
+            <article ng-repeat="q in filteredQuestions track by $index"
+                class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden transition-all duration-200">
+                <!-- Question Header (Clickable) -->
+                <header class="px-6 py-4 cursor-pointer bg-gradient-to-r from-blue-600 to-blue-700"
+                    ng-click="q.expanded = !q.expanded">
+                    <div class="flex items-start justify-between gap-4">
+                        <div class="flex-1">
+                            <span
+                                class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium mb-2 bg-blue-800 text-blue-100">
+                                #{{ $index + 1 }}
+                            </span>
+                            <h2 class="text-lg font-semibold text-white leading-relaxed"
+                                ng-bind-html="renderMath(q.question)"></h2>
+                        </div>
+                        <svg class="w-6 h-6 text-white/80 flex-shrink-0 transition-transform duration-200"
+                            ng-class="{'rotate-180': q.expanded}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                </header>
+
+                <!-- Answers (Expandable) -->
+                <section ng-show="q.expanded" class="p-6">
+                    <!-- Multiple choice answers -->
+                    <ul ng-if="q.answers" class="space-y-3">
+                        <li ng-repeat="(key, answerText) in q.answers"
+                            class="flex items-start gap-3 p-4 rounded-xl border-2 transition-colors"
+                            ng-class="q.correct[key] === 1 ? 'border-green-400 bg-green-50' : 'border-slate-200 bg-slate-50'">
+                            <span
+                                class="flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-sm font-medium"
+                                ng-class="q.correct[key] === 1 ? 'bg-green-500 text-white' : 'bg-slate-300 text-slate-600'">
+                                <span ng-if="q.correct[key] === 1">✓</span>
+                                <span ng-if="q.correct[key] !== 1">{{ key }}</span>
+                            </span>
+                            <span class="flex-1"
+                                ng-class="q.correct[key] === 1 ? 'text-green-800 font-medium' : 'text-slate-700'"
+                                ng-bind-html="renderMath(answerText)"></span>
+                        </li>
+                    </ul>
+
+                    <!-- Note if present -->
+                    <aside ng-if="q.note" class="mt-4 p-4 bg-blue-50 rounded-xl border border-blue-200"
+                        ng-class="{'mt-0': !q.answers}">
+                        <p class="flex items-start gap-2">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-600 text-white">
+                                Poznámka
+                            </span>
+                            <span class="text-slate-700" ng-bind-html="renderMath(q.note)"></span>
+                        </p>
+                    </aside>
+
+                    <!-- Text answer if present -->
+                    <aside ng-if="q.answer" class="mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200"
+                        ng-class="{'mt-0': !q.answers && !q.note}">
+                        <p class="flex items-start gap-2">
+                            <span
+                                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-600 text-white">
+                                Odpověď
+                            </span>
+                            <span class="text-slate-700" ng-bind-html="renderMath(q.answer)"></span>
+                        </p>
+                    </aside>
+                </section>
+            </article>
+
+            <!-- No Results -->
+            <div ng-if="filteredQuestions.length === 0" class="text-center py-12">
+                <svg class="w-16 h-16 mx-auto text-slate-300 mb-4" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-slate-500 text-lg">
+                    Žádné otázky neodpovídají vyhledávání
+                </p>
+                <button ng-click="clearSearch()" class="mt-4 text-blue-600 hover:text-blue-700 font-medium">
+                    Vymazat vyhledávání
+                </button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="border-t border-slate-200 pt-6 mt-12">
+            <nav class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500">
+                <a href="index.html" class="hover:text-blue-600 transition-colors">Tester</a>
+                <span class="hidden sm:inline">•</span>
+                <span>2016–2026</span>
+                <span class="hidden sm:inline">•</span>
+                <a href="https://gitlab.com/novacto3/paa-tester-2" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-blue-600 transition-colors">
+                    Zdrojové kódy na Gitlabu
+                </a>
+                <span class="hidden sm:inline">•</span>
+                <a href="https://github.com/AlesSrsen/kop-tester" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-blue-600 transition-colors">
+                    Aktuálna stránka na GitHub
+                </a>
+            </nav>
+            <p class="mt-3 text-sm text-slate-500">
+                <a href="https://srsen.me" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-blue-600 transition-colors">
+                    🐝 srsen.me
+                </a>
+            </p>
+        </footer>
+    </div>
+
+    <script type="text/javascript">
+        var prehledApp = angular.module("prehledApp", ["ngSanitize"]);
+
+        // Load ngSanitize for ng-bind-html
+        angular.module("ngSanitize", []).filter("trust", [
+            "$sce",
+            function ($sce) {
+                return function (val) {
+                    return $sce.trustAsHtml(val);
+                };
+            },
+        ]);
+
+        prehledApp.controller("PrehledController", [
+            "$scope",
+            "$sce",
+            function ($scope, $sce) {
+                // Initialize data from questions array
+                $scope.allQuestions = questions.map(function (q, index) {
+                    return angular.extend({}, q, {
+                        expanded: false,
+                        originalIndex: index,
+                    });
+                });
+
+                $scope.filteredQuestions = $scope.allQuestions;
+                $scope.searchQuery = "";
+                $scope.allExpanded = false;
+
+                // Render math (simple replacement for display)
+                $scope.renderMath = function (text) {
+                    if (!text) return "";
+                    return $sce.trustAsHtml(text);
+                };
+
+                // Filter questions based on search
+                $scope.filterQuestions = function () {
+                    var query = ($scope.searchQuery || "").toLowerCase();
+
+                    $scope.filteredQuestions = $scope.allQuestions.filter(function (q) {
+                        // If no search query, include all
+                        if (!query) return true;
+
+                        // Search in question text
+                        if (q.question && q.question.toLowerCase().indexOf(query) !== -1) return true;
+
+                        // Search in multiple choice answers
+                        if (q.answers) {
+                            for (var key in q.answers) {
+                                if (q.answers[key].toLowerCase().indexOf(query) !== -1)
+                                    return true;
+                            }
+                        }
+
+                        // Search in note
+                        if (q.note && q.note.toLowerCase().indexOf(query) !== -1)
+                            return true;
+
+                        // Search in text answer
+                        if (q.answer && q.answer.toLowerCase().indexOf(query) !== -1)
+                            return true;
+
+                        return false;
+                    });
+
+                    // Reprocess MathJax after filtering
+                    setTimeout(function () {
+                        if (window.MathJax && MathJax.Hub) {
+                            MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                        }
+                    }, 100);
+                };
+
+                // Clear search
+                $scope.clearSearch = function () {
+                    $scope.searchQuery = "";
+                    $scope.filterQuestions();
+                };
+
+                // Toggle expand all
+                $scope.toggleExpandAll = function () {
+                    $scope.allExpanded = !$scope.allExpanded;
+                    $scope.filteredQuestions.forEach(function (q) {
+                        q.expanded = $scope.allExpanded;
+                    });
+
+                    // Reprocess MathJax after expanding
+                    if ($scope.allExpanded) {
+                        setTimeout(function () {
+                            if (window.MathJax && MathJax.Hub) {
+                                MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                            }
+                        }, 100);
+                    }
+                };
+
+                // Initial MathJax processing
+                setTimeout(function () {
+                    if (window.MathJax && MathJax.Hub) {
+                        MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+                    }
+                }, 500);
+            },
+        ]);
+    </script>
+</body>
+
+</html>
