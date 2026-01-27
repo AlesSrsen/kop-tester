@@ -1158,8 +1158,8 @@ examQuestions.push({
         "2": "Nie (False)"
     },
     "correct": {
-        "1": 1,
-        "2": 0
+        "1": 0,
+        "2": 1
     }
 });
 
