@@ -24,6 +24,26 @@ examQuestions.push({
 
 examQuestions.push({
     "question": "",
+    "image": "assets/exam/toky-ve-stromu-2026-01-20.png",
+    "answer": `
+Konfigurační proměnné:<br/>
+Vektor délky k obsahující toky (celá čísla) pro dané páry uzlů.<br/><br/>
+
+Stavový prostor:<br/>
+Stav je konkrétní ohodnocení konfiguračních proměnných. Jelikož připouštíme i ohodnocení, které není řešením, nějaká relaxace je nutná (např. kombinace celkového přetížení a relativního přetížení na jednotlivých hranách). Kdybychom se chtěli relaxaci vyhnout, mohli bychom vždy po nějaké operaci zkontrolovat, že se jedná o řešení, popřípadě snižovat postupně váhy (např. náhodným tokům), dokud to řešení není.<br/><br/>
+Operace: zvýšení/snížení hodnoty jednoho toku.<br/>
+Stavový prostor je silně souvislý, jelikož každý stav je dosažitelný z každého jiného stavu pomocí aplikování operací.<br/><br/>
+
+Počáteční řešení:<br/>
+Jednoduché: vektor samých nul.<br/>
+Složitější: vektor náhodných čísel, jejichž součet nepřesahuje kapacitu hrany s maximální kapacitou. Pokud nepřipouštíme ohodnocení, které nejsou řešením, museli bychom takovýto vektor ještě opravit snižováním hodnot náhodným tokům.<br/><br/>
+Díky silné souvislosti stavového prostoru by mělo optimální řešení být dosažitelné bez ohledu na počáteční řešení.
+`
+});
+
+
+examQuestions.push({
+    "question": "",
     "image": "assets/exam/696d29fcb0377ef270e69bde_q2.png",
     "answers": {
         "1": "Asymptotická horní mez velikosti stavového prostoru roste exponenciálně s K",
