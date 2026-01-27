@@ -19,7 +19,8 @@ examQuestions.push({
         "3": 1,
         "4": 1,
         "5": 0
-    }
+    },
+    "aiNote": "Stavový/prohledávací prostor obecně není strom ani acyklický (operátory mohou tvořit cykly). Heuristika typicky končí po konečně mnoha krocích (např. konečný prostor + pravidla zastavení). Souvislost závisí na tom, jaký „swap“ je povolen: některé definice operátoru mohou zachovat invariant (→ graf se rozpadne), jiné transpozice na pozicích obvykle konektivitu zachovají."
 });
 
 examQuestions.push({
@@ -36,7 +37,8 @@ examQuestions.push({
         "2": 0,
         "3": 0,
         "4": 1
-    }
+    },
+    "aiNote": "Počet konfigurací obvykle roste exponenciálně s počtem rozhodnutí K (kombinatorická exploze), ne jen kvadraticky v n,m. Okolí generované operátory je typicky úměrné „počtu možných lokálních změn“ – zde K (např. volba jedné z K alternativ), nikoli mn pro každý prvek."
 });
 
 examQuestions.push({
@@ -52,7 +54,8 @@ examQuestions.push({
         "2": 0,
         "3": 1,
         "4": 0
-    }
+    },
+    "aiNote": "2-opt (dvojzáměna hran) umí převádět túry mezi sebou, takže graf stavů je (za běžné definice) dosažitelný/„silně souvislý“. Počet túr není 25; pro n měst je (n−1)!/2 (pro n=5 je 12). Počet 2-opt sousedů je n(n−3)/2 = 5, ne 10."
 });
 
 examQuestions.push({
@@ -68,7 +71,8 @@ examQuestions.push({
         "2": 1,
         "3": 0,
         "4": 1
-    }
+    },
+    "aiNote": "fmGA hodnotí fragmenty (podmnožiny genů) tak, že potřebuje proceduru, která umí ohodnotit i neúplnou informaci, a typicky používá referenční individuum k doplnění nedospecifikovaných genů. Nejde primárně o fenotyp celé kompletní konfigurace."
 });
 
 examQuestions.push({
@@ -84,7 +88,8 @@ examQuestions.push({
         "2": 1,
         "3": 1,
         "4": 1
-    }
+    },
+    "aiNote": "Ranking nahrazuje absolutní zdatnost pořadím a mapováním pořadí na pravděpodobnosti výběru → přímo mění selekční tlak (může ho zvýšit i snížit dle parametrů). Nesouvisí s velikostí turnaje (to je parametr turnajové selekce)."
 });
 
 examQuestions.push({
@@ -98,7 +103,8 @@ examQuestions.push({
         "1": 0,
         "2": 1,
         "3": 1
-    }
+    },
+    "aiNote": "Když se „landscape“ výrazně mění, je užitečné adaptovat selekční tlak (automaticky) a/nebo přepočítat zdatnosti (lineární škálování), aby tlak nebyl příliš silný/slabý v různých fázích. Trvale vysoká mutace často spíš rozbije konvergenci (šum přebije selekci)."
 });
 
 examQuestions.push({
@@ -114,7 +120,8 @@ examQuestions.push({
         "2": 0,
         "3": 1,
         "4": 0
-    }
+    },
+    "aiNote": "Silná souvislost znamená dosažitelnost mezi stavy (důležité pro SA: aby bylo možné uniknout z lokálních minim). Sama o sobě negarantuje, že se libovolný algoritmus zastaví (záleží na pravidlech přijetí a stop kritériu). Není nutná systematická (exaktní) strategie – SA je typicky nesystematické."
 });
 
 examQuestions.push({
@@ -128,7 +135,8 @@ examQuestions.push({
         "1": 0,
         "2": 1,
         "3": 1
-    }
+    },
+    "aiNote": "Řízení selekčního tlaku se dělá úpravou mapování zdatnosti→pravděpodobnosti (scaling, ranking), i když sampling je SUS. Pravděpodobnost konkrétního operátoru (cut&splice) řídí diverzifikaci/rekombinaci, ne selekční tlak samotné selekce."
 });
 
 examQuestions.push({
@@ -146,7 +154,8 @@ examQuestions.push({
         "3": 0,
         "4": 1,
         "5": 0
-    }
+    },
+    "aiNote": "BOA/„bayesovská optimalizace“ v tomto smyslu stojí na probabilistickém modelu závislostí (typicky bayesovská síť) nad proměnnými reprezentace. Nejde primárně o formát chromozomu (binární řetěz/vektor), ale o model, který z populace odhaduje vazby a pak podle nich generuje nové jedince."
 });
 
 examQuestions.push({
@@ -162,7 +171,8 @@ examQuestions.push({
         "2": 0,
         "3": 1,
         "4": 0
-    }
+    },
+    "aiNote": "V BOA se noví jedinci typicky vzorkují (generují) ze stochastického modelu naučeného z vybrané části populace. Křížení/ruleta jsou mechanismy klasických GA; cut&splice patří spíš do (fast) messy GA."
 });
 
 examQuestions.push({
@@ -178,7 +188,8 @@ examQuestions.push({
         "2": 1,
         "3": 0,
         "4": 0
-    }
+    },
+    "aiNote": "Model se učí z dat (aktuální/selektované generace): má popsat statistické závislosti pozorované v kvalitních jedincích. Není to „model ideálu“ daný předem, ani výsledek křížení; výběr je jen předkrok (určí, na kom model učit)."
 });
 
 examQuestions.push({
@@ -194,7 +205,8 @@ examQuestions.push({
         "2": 0,
         "3": 0,
         "4": 0
-    }
+    },
+    "aiNote": "Stejně jako předchozí otázka: model je odhad (hypotéza) o závislostech mezi proměnnými podle toho, co je v aktuální (typicky selektované) populaci. „Stochastický výběr“ model nevytvoří, jen vybere data."
 });
 
 examQuestions.push({
@@ -210,7 +222,8 @@ examQuestions.push({
         "2": 1,
         "3": 0,
         "4": 0
-    }
+    },
+    "aiNote": "Klasické evoluční programování (Fogel) historicky vyvíjí stavové stroje/automaty a používá hlavně unární mutace; stromové programy jsou typičtější pro genetické programování (GP), DAG spíš pro kartézské GP."
 });
 
 examQuestions.push({
@@ -226,7 +239,8 @@ examQuestions.push({
         "2": 0,
         "3": 0,
         "4": 0
-    }
+    },
+    "aiNote": "Evoluční strategie typicky optimalizují reálné vektory a nesou i endogenní parametry mutace (např. směrodatné odchylky/kroky). Stromy/automaty patří k GP/EP; binární řetěz je klasický GA."
 });
 
 examQuestions.push({
@@ -242,7 +256,8 @@ examQuestions.push({
         "2": 1,
         "3": 1,
         "4": 1
-    }
+    },
+    "aiNote": "„Stavební bloky“ jsou krátká schémata nízkého řádu: přežívají snáz než složitá (ta vyžadují výrazně vyšší zdatnost). Pokud jsou určité geny daleko od sebe (velká délka schématu), jednobodové křížení je snadněji přestřihne → hůř přežívají. Mutace vždy s nějakou pravděpodobností schéma poškodí."
 });
 
 examQuestions.push({
@@ -256,7 +271,8 @@ examQuestions.push({
         "1": 1,
         "2": 0,
         "3": 1
-    }
+    },
+    "aiNote": "Zpomalení konvergence se obvykle dělá snížením selekčního tlaku (méně agresivní výběr). Pouhé zvyšování mutace často vede spíš k rozbití informace (šum) než k „zdravému“ zpomalení. Při malém tlaku může mutační šum převážit → divergence, proto může být nutné snížit i mutaci."
 });
 
 examQuestions.push({
@@ -270,7 +286,8 @@ examQuestions.push({
         "1": 1,
         "2": 0,
         "3": 0
-    }
+    },
+    "aiNote": "Lineární škálování přímo mění mapování zdatnosti→pravděpodobnosti, takže umí snížit tlak a tím zpomalit konvergenci. Změna mechanismu selekce při zachování stejného tlaku sama o sobě trend moc nezmění. Zvětšení turnaje naopak tlak typicky zvýší (rychlejší konvergence), takže není vhodné."
 });
 
 examQuestions.push({
@@ -284,7 +301,8 @@ examQuestions.push({
         "1": 1,
         "2": 0,
         "3": 1
-    }
+    },
+    "aiNote": "Rychlost konvergence primárně řídí selekční tlak; při stejném tlaku bývá volba ruleta/turnaj druhotná. Zvyšovat mutaci není typický způsob urychlení (spíš přidává šum). Pro urychlení zvýšíme tlak a mutaci necháme jen na minimální úrovni nutné k udržení variability."
 });
 
 examQuestions.push({
@@ -298,7 +316,8 @@ examQuestions.push({
         "1": 1,
         "2": 0,
         "3": 1
-    }
+    },
+    "aiNote": "Divergence po „dobrém“ průběhu může znamenat, že v okolí minima se dramaticky změní landscape (jiné měřítko/gradienty) a stávající nastavení začne být nevhodné. Také může selhávat adaptace selekčního tlaku (např. nechá tlak příliš nízko vůči mutačnímu šumu). Příliš malá mutace typicky vede spíš k předčasné konvergenci, ne k divergenci."
 });
 
 examQuestions.push({
@@ -312,7 +331,8 @@ examQuestions.push({
         "1": 0,
         "2": 1,
         "3": 0
-    }
+    },
+    "aiNote": "Lineární škálování má tvar Z = a·z + b, takže řízení selekčního tlaku probíhá přímou úpravou konstant a,b (resp. ekvivalentních parametrů). Mutace je jiný „knoflík“ (diverzifikace). Pravděpodobnost výběru nejlepšího jedince je důsledek škálování + selekce, ne přímý parametr škálování."
 });
 
 examQuestions.push({
@@ -326,7 +346,8 @@ examQuestions.push({
         "1": 1,
         "2": 1,
         "3": 1
-    }
+    },
+    "aiNote": "Všechny tři metriky dávají zpětnou vazbu o stavu evoluce: diverzita (ztráta variability), trend průměrné zdatnosti (stagnace/zrychlení) i rozptyl/„gap“ mezi elitou a středem (indikace tlaku). Na jejich základě lze tlak adaptovat."
 });
 
 examQuestions.push({
@@ -340,7 +361,8 @@ examQuestions.push({
         "1": 0,
         "2": 0,
         "3": 1
-    }
+    },
+    "aiNote": "U rulety se „výseče“ odvozují ze zdatností po přepočtu; selekční tlak se tedy řídí nejpřímočařeji změnou koeficientů lineárního škálování. Výseče nejsou nezávislý ovládací prvek (jsou výsledkem). Mutace neřídí selekční tlak."
 });
 
 examQuestions.push({
@@ -354,7 +376,8 @@ examQuestions.push({
         "1": 0,
         "2": 1,
         "3": 0
-    }
+    },
+    "aiNote": "U turnajové selekce je hlavní „knoflík“ velikost turnaje r: větší r → vyšší selekční tlak (větší šance, že vyhraje nejlepší). Pravděpodobnost výběru nejlepšího je až důsledek zvoleného r; mutace s tlakem přímo nesouvisí."
 });
 
 examQuestions.push({
@@ -370,7 +393,8 @@ examQuestions.push({
         "2": 1,
         "3": 1,
         "4": 0
-    }
+    },
+    "aiNote": "Stav je úplné ohodnocení n proměnných → d možností na každou → d^n stavů. Prostor prohledávání často zahrnuje i „nepřiřazeno“ (parciální přiřazení), tedy d+1 možností na proměnnou → (d+1)^n."
 });
 
 examQuestions.push({
@@ -386,7 +410,8 @@ examQuestions.push({
         "2": 1,
         "3": 0,
         "4": 0
-    }
+    },
+    "aiNote": "Jestli algoritmus skutečně udržuje selekční tlak, ověřuješ přímo vztah „poměrná zdatnost → četnost výběru do reprodukce“. Mutace není selekce. Volba jen jedné instance/velikosti test spíš zkreslí (tady není považováno za správný postup)."
 });
 
 examQuestions.push({
@@ -400,7 +425,8 @@ examQuestions.push({
         "1": 1,
         "2": 0,
         "3": 1
-    }
+    },
+    "aiNote": "Turnaj i ruleta mají ovladatelné „spektrum“ tlaku (turnaj přes r, ruleta přes scaling/ranking), zhruba srovnatelné. SUS hlavně snižuje sampling-šum, ale sám o sobě dramaticky nezvětšuje rozsah tlaku. Lineární škálování přímo nastavuje mapování zdatností → tlak."
 });
 
 examQuestions.push({
@@ -414,7 +440,8 @@ examQuestions.push({
         "1": 1,
         "2": 1,
         "3": 1
-    }
+    },
+    "aiNote": "Při příliš malém tlaku může mutační šum převážit informaci ze zdatnosti → divergence. Obtížnější instance často vyžadují delší průzkum (pomalejší konvergenci), tedy nižší tlak. Nastavení tlaku je provázané s mutací (oba ovlivňují diverzifikaci/intenzifikaci)."
 });
 
 examQuestions.push({
@@ -430,7 +457,8 @@ examQuestions.push({
         "2": 0,
         "3": 1,
         "4": 1
-    }
+    },
+    "aiNote": "Messy reprezentace je „fragmentová“: individuum může být nedospecifikované i přespecifikované (duplicity). Operátory pracují s množinami (podmnožinami) genových hodnot/pozic, ne přímo se zdatností."
 });
 
 examQuestions.push({
@@ -446,7 +474,8 @@ examQuestions.push({
         "2": 1,
         "3": 0,
         "4": 0
-    }
+    },
+    "aiNote": "fmGA explicitně manipuluje fragmenty/schémy = podmnožiny genů (cut/splice, filtrace schémat). Fenotyp a zdatnost se používají k hodnocení, ale operátory samotné kombinují genetické fragmenty."
 });
 
 examQuestions.push({
@@ -462,7 +491,8 @@ examQuestions.push({
         "2": 0,
         "3": 0,
         "4": 1
-    }
+    },
+    "aiNote": "fmGA hodnotí fragment tak, že ho „vloží“ do referenčního (kompetitivního) individua, doplní zbytek a spočte fitness výsledné kompletní konfigurace. Nehodnotí jen odlišnost od reference ani průměrnou délku fragmentů."
 });
 
 examQuestions.push({
@@ -478,7 +508,8 @@ examQuestions.push({
         "2": 1,
         "3": 0,
         "4": 0
-    }
+    },
+    "aiNote": "Stejný princip: fragment sám o sobě často neurčuje celé řešení, proto se doplňuje referenčním jedincem a vyhodnocuje se komplet. Samotná reference (bez dosazení fragmentu) by nedala informaci o kvalitě fragmentu."
 });
 
 examQuestions.push({
@@ -492,7 +523,8 @@ examQuestions.push({
         "1": 0,
         "2": 0,
         "3": 1
-    }
+    },
+    "aiNote": "Při velmi vysoké mutaci se chování blíží náhodné procházce, ale selekce stále dává slabé „zaujetí“ směrem k lepším řešením → zaujatá (biased) náhodná procházka, ne čistě náhodná."
 });
 
 examQuestions.push({
@@ -508,7 +540,8 @@ examQuestions.push({
         "2": 0,
         "3": 0,
         "4": 0
-    }
+    },
+    "aiNote": "Stavební blok (schéma/fragment) je podmnožina genů určitého řádu/délky, která se generuje a pak filtruje selekcí. Není to fenotyp ani „celé“ individuum; reference slouží hlavně k hodnocení, ne jako zdroj definice bloků."
 });
 
 examQuestions.push({
@@ -524,7 +557,8 @@ examQuestions.push({
         "2": 1,
         "3": 0,
         "4": 0
-    }
+    },
+    "aiNote": "„Blok“ je schéma/fragment, které má přiřazené (vyhodnocené) fitness – tedy ohodnocená podmnožina genů. Není to celé individuum ani fenotyp; reference jen pomáhá blok hodnotit."
 });
 
 examQuestions.push({
@@ -540,7 +574,8 @@ examQuestions.push({
         "2": 1,
         "3": 0,
         "4": 0
-    }
+    },
+    "aiNote": "Ve fmGA se vnější smyčka/„éry“ zvyšuje řád k stavebních bloků (cílovou velikost fragmentů), aby se postupně skládaly větší a větší konzistentní části řešení. Délka reference se nemění a selekční tlak není podstata vnější smyčky."
 });
 
 examQuestions.push({
@@ -556,7 +591,8 @@ examQuestions.push({
         "2": 0,
         "3": 0,
         "4": 1
-    }
+    },
+    "aiNote": "Referenční jedinec je „šablona“ pro doplnění nedospecifikovaných genů při hodnocení fragmentu: dosazuješ fragment do reference (tedy proměnné reference jsou nahrazovány hodnotami z fragmentu). Nejde o stochastický model (to je BOA)."
 });
 
 examQuestions.push({
@@ -594,7 +630,8 @@ examQuestions.push({
         "13": 0,
         "14": 0,
         "15": 0
-    }
+    },
+    "aiNote": "Relaxace typicky nahradí původní kritérium kombinací „kvalita + odhad vzdálenosti/porušení“, aby i neřešení dostala smysluplné vedení směrem k řešení. Tím zlepšuje dosažitelnost (můžeš procházet i přes neřešení místo zahazování). Obvykle má parametr (váha pokuty/odhadu), který se ladí experimentálně; není to oprava konfigurace ani konstanta pro všechna neřešení."
 });
 
 examQuestions.push({
@@ -610,7 +647,8 @@ examQuestions.push({
         "2": 1,
         "3": 1,
         "4": 1
-    }
+    },
+    "aiNote": "Pro ověření teorie potřebuješ kontrolu nad parametry → generované instance s řízenými parametry (a také různé velikosti, aby se ukázalo škálování). Kvůli randomizaci SA je nutné opakované spouštění. Praktický mix je spíš pro „black-box“ nasazení, ne pro test teorie parametrů."
 });
 
 examQuestions.push({
@@ -634,7 +672,8 @@ examQuestions.push({
         "6": 1,
         "7": 0,
         "8": 1
-    }
+    },
+    "aiNote": "Počáteční teplota souvisí s hloubkami lokálních minim a škálou zhoršení δ, proto testuješ instance různé obtížnosti/hloubky a i různé velikosti. Sleduješ průběh konvergence vs. rozvrh ochlazování a kvůli randomizaci opakuješ běhy. Nestačí fixovat jednu velikost ani zkoušet jen „lehké“ instance."
 });
 
 examQuestions.push({
@@ -646,7 +685,8 @@ examQuestions.push({
     "correct": {
         "1": 1,
         "2": 0
-    }
+    },
+    "aiNote": "Malá T → pravděpodobnost přijetí zhoršení exp(−δ/T) je velmi malá → algoritmus se chová jako strmá lokální heuristika a snadno uvízne v lokálním minimu."
 });
 
 examQuestions.push({
@@ -662,7 +702,8 @@ examQuestions.push({
         "2": 0,
         "3": 1,
         "4": 0
-    }
+    },
+    "aiNote": "SA typicky zvolí náhodného souseda; pokud je lepší, přijme ho, a pokud je horší, může ho přijmout s pravděpodobností závislou na δ a T (Metropolis). To odpovídá „zlepšení nebo přípustné zhoršení“, ne výběru nejlepšího."
 });
 
 examQuestions.push({
@@ -674,7 +715,8 @@ examQuestions.push({
     "correct": {
         "1": 1,
         "2": 0
-    }
+    },
+    "aiNote": "Krátké equilibrium znamená málo pokusů při dané teplotě → teplota se snižuje příliš rychle → klesá šance překonat bariéry (hloubky minim) → častější uvíznutí."
 });
 
 examQuestions.push({
@@ -688,7 +730,8 @@ examQuestions.push({
         "1": 0,
         "2": 1,
         "3": 0
-    }
+    },
+    "aiNote": "Více iterací na stejné teplotě = pomalejší „efektivní“ ochlazování v čase (víc práce dřív, než T klesne). To odpovídá menšímu koeficientu ochlazování (pomalejší snižování teploty)."
 });
 
 examQuestions.push({
@@ -700,7 +743,8 @@ examQuestions.push({
     "correct": {
         "1": 1,
         "2": 0
-    }
+    },
+    "aiNote": "„Velmi nízký“ koeficient (typicky α v cool(T)=αT) znamená rychlé ochlazení → rychle klesne ochota přijímat zhoršení → SA se chová jako lokální heuristika a častěji uvízne."
 });
 
 examQuestions.push({
@@ -712,7 +756,8 @@ examQuestions.push({
     "correct": {
         "1": 1,
         "2": 0
-    }
+    },
+    "aiNote": "Ano: rychlé ochlazení brzy snižuje přijímání horších tahů, takže algoritmus ztratí schopnost překonávat bariéry mezi lokálními minimy."
 });
 
 examQuestions.push({
@@ -728,7 +773,8 @@ examQuestions.push({
         "2": 1,
         "3": 0,
         "4": 1
-    }
+    },
+    "aiNote": "„Iterativní síla“ se projeví tím, že výsledná kvalita málo závisí na startu: testuješ více počátečních řešení a kvůli randomizaci opakuješ běhy. Samotná závislost času na velikosti není přímý test síly; omezit se jen na malé instance by mohlo zkreslit."
 });
 
 examQuestions.push({
@@ -742,7 +788,8 @@ examQuestions.push({
         "1": 1,
         "2": 1,
         "3": 1
-    }
+    },
+    "aiNote": "Teplota T musí být ve stejném měřítku jako zhoršení δ, takže je potřeba normalizace/škálování kritéria. Znalost hloubek lokálních minim pomáhá nastavit T0 a rozvrh. A délka equilibrium (kolik kroků na teplotu) je do značné míry zaměnitelná s koeficientem ochlazování (obojí řídí rychlost ochlazení v čase)."
 });
 
 examQuestions.push({
@@ -756,7 +803,8 @@ examQuestions.push({
         "1": 1,
         "2": 1,
         "3": 1
-    }
+    },
+    "aiNote": "T0 musí být konzistentní s tím, jak rychle budeš chladit (α, equilibrium): vysoké T0 bez dost pomalého chlazení jen plýtvá kroky, nízké T0 vyžaduje extrémně pomalé chlazení. Záleží na obtížnosti (hloubky bariér) i na škále kritéria (haléře vs koruny → T se musí škálovat stejně)."
 });
 
 examQuestions.push({
@@ -772,7 +820,8 @@ examQuestions.push({
         "2": 1,
         "3": 0,
         "4": 1
-    }
+    },
+    "aiNote": "Koncová teplota, pokud je moc vysoká, ukončí SA ještě v „diverzifikační“ fázi → prohledáš méně do hloubky a skončíš hůř. Nemusí být konstantní při změně T0 (důležitý je celý rozvrh). Často je praktické ukončovat adaptivně podle stagnace/konvergence."
 });
 
 examQuestions.push({
@@ -788,7 +837,8 @@ examQuestions.push({
         "2": 0,
         "3": 1,
         "4": 1
-    }
+    },
+    "aiNote": "Pro „black-box“ validaci nasazení použiješ reprezentativní mix reálných (praktických) instancí. Protože SA je randomizované a i nastavení teploty může používat náhodu, běhy je nutné opakovat a hodnotit statisticky."
 });
 
 examQuestions.push({
@@ -806,7 +856,8 @@ examQuestions.push({
         "3": 1,
         "4": 1,
         "5": 0
-    }
+    },
+    "aiNote": "Pro nasazení chceš realistiku → používej praktické instance z provozu. U randomizovaných algoritmů je jeden běh nereprezentativní, porovnávej průměr/rozptyl z mnoha běhů. Když čas nevadí a B je rychlejší, férové je využít rychlost k více běhům a brát nejlepší řešení v rámci stejného „rozpočtu“ (např. 3 běhy vs 1)."
 });
 
 examQuestions.push({
@@ -822,7 +873,8 @@ examQuestions.push({
         "2": 0,
         "3": 1,
         "4": 1
-    }
+    },
+    "aiNote": "Opět: realistické instance z praxe. Jeden běh je málo (randomizace), porovnávej statistiky z více běhů. Pokud existuje pevný časový limit, je přirozené chápat „jedno spuštění“ jako využití celého limitu (více restartů) a vzít nejlepší dosažené řešení v limitu."
 });
 
 examQuestions.push({
@@ -838,7 +890,8 @@ examQuestions.push({
         "2": 1,
         "3": 0,
         "4": 1
-    }
+    },
+    "aiNote": "Pro tvrzení o asymptotice potřebuješ kontrolované rozdělení instancí podle velikosti → generuj uniformně (každá instance dané velikosti stejně pravděpodobná). Las Vegas má náhodnou dobu běhu, proto opakuj a odhaduj očekávaný čas/rozptyl. Jedna velikost nestačí na růstovou hypotézu."
 });
 
 examQuestions.push({
@@ -854,7 +907,8 @@ examQuestions.push({
         "2": 1,
         "3": 1,
         "4": 0
-    }
+    },
+    "aiNote": "„Relativní kvalita“ vyžaduje nějaký referenční optimum/best-known → ideálně exaktní řešení (nebo chytrý obchvat). Aby ses bavil o závislosti na velikosti bez zkreslení, generuj instance kontrolovaně (uniformně). Jeden běh typicky nestačí (Monte Carlo má náhodnou kvalitu)."
 });
 
 examQuestions.push({
@@ -870,7 +924,8 @@ examQuestions.push({
         "2": 1,
         "3": 1,
         "4": 1
-    }
+    },
+    "aiNote": "Citlivost na charakteristiku testuješ jen tehdy, když ji umíš u instancí kontrolovat/znát → generované instance se známými vlastnostmi. Potřebuješ páry „podobné“ s/bez charakteristiky a opakované běhy kvůli randomizaci."
 });
 
 examQuestions.push({
@@ -886,7 +941,8 @@ examQuestions.push({
         "2": 0,
         "3": 0,
         "4": 1
-    }
+    },
+    "aiNote": "Když obtížnost nejde dobře odhadnout z parametrů, nejlepší je vzít reálné instance z praxe (manuální historie) jako proxy budoucího provozu. Randomizovaný algoritmus musíš opakovaně spouštět a hodnotit statisticky; lehké instance by zkreslily očekávání."
 });
 
 examQuestions.push({
@@ -902,7 +958,8 @@ examQuestions.push({
         "2": 1,
         "3": 1,
         "4": 1
-    }
+    },
+    "aiNote": "U velkého rozptylu není průměr automaticky vhodný: nejdřív zjisti rozdělení (a teprve při symetrii/praktické vhodnosti použij průměr). Smysluplné je porovnat rozdělení obou algoritmů (překryv, kvantily) a hledat další instanční charakteristiku, která rozptyl vysvětluje."
 });
 
 examQuestions.push({
@@ -918,7 +975,8 @@ examQuestions.push({
         "2": 1,
         "3": 1,
         "4": 1
-    }
+    },
+    "aiNote": "U randomizovaných heuristik je nutné mnoho běhů a práce se statistikou (průměr, rozptyl, testy nezávislosti/korelace). Jeden běh nic nedokazuje. Pro silné tvrzení „nemá vliv“ je potřeba plánovat test napříč charakteristikami instancí (aby efekt nebyl skrytý jen v části prostoru)."
 });
 
 examQuestions.push({
@@ -930,7 +988,8 @@ examQuestions.push({
     "correct": {
         "1": 1,
         "2": 0
-    }
+    },
+    "aiNote": "Pokud po mnoha restartech končíš ve stejném řešení, je to známka, že heuristika má dost síly „přetlačit“ start a konverguje do stejného (pravděpodobně velmi dobrého) attractoru. Kdyby padala do různých lokálních minim, výsledky by se výrazně lišily."
 });
 
 examQuestions.push({
@@ -942,7 +1001,8 @@ examQuestions.push({
     "correct": {
         "1": 0,
         "2": 1
-    }
+    },
+    "aiNote": "Ne: menší turnaj znamená nižší selekční tlak (větší role náhody) → více diverzifikace, méně intenzifikace. Intenzifikaci zvyšuje naopak zvětšení turnaje."
 });
 
 examQuestions.push({
@@ -956,7 +1016,8 @@ examQuestions.push({
         "1": 0,
         "2": 0,
         "3": 1
-    }
+    },
+    "aiNote": "U „pravidelného“ k-okolí počet kombinací tahů roste typicky exponenciálně s k (kombinuješ více elementárních změn), proto není růst lineární ani kvadratický."
 });
 
 examQuestions.push({
@@ -972,7 +1033,8 @@ examQuestions.push({
         "2": 1,
         "3": 0,
         "4": 1
-    }
+    },
+    "aiNote": "Vyšší selekční tlak rychleji rozmnoží elitu → rychlejší konvergence, ale zároveň ztráta diverzity a riziko degenerace (uvíznutí v lokálním optimu). Divergence je typičtější při příliš malém tlaku v kombinaci s velkým mutačním šumem."
 });
 
 examQuestions.push({
@@ -988,7 +1050,8 @@ examQuestions.push({
         "2": 0,
         "3": 1,
         "4": 0
-    }
+    },
+    "aiNote": "Vysoká mutace přidává šum a může přebít selekci → divergence (algoritmus „nepamatuje“ dobré bloky). Nevede typicky k degeneraci ani k rychlejší konvergenci; naopak diverzitu spíš zvyšuje, ne snižuje."
 });
 
 examQuestions.push({
@@ -1000,7 +1063,8 @@ examQuestions.push({
     "correct": {
         "1": 0,
         "2": 1
-    }
+    },
+    "aiNote": "Pokud výsledek výrazně závisí na startu (různé restarty končí různě), je to typické pro uvíznutí v různých lokálních extrémech. Kdyby vždy končila stejně, spíš by měla velkou iterativní sílu / dominující attractor."
 });
 
 examQuestions.push({
@@ -1012,7 +1076,8 @@ examQuestions.push({
     "correct": {
         "1": 1,
         "2": 0
-    }
+    },
+    "aiNote": "Ano: slabší selekční tlak znamená menší preferenci elitních jedinců, takže se lépe udrží rozmanitost populace (větší diverzifikace)."
 });
 
 examQuestions.push({
@@ -1024,7 +1089,8 @@ examQuestions.push({
     "correct": {
         "1": 0,
         "2": 1
-    }
+    },
+    "aiNote": "Ne: mutace je zdroj nové genetické informace a typicky diverzitu zvyšuje. (Extrémně vysoká mutace ale může vést k „náhodné procházce“ a ztrátě exploatace, ne k nižší diverzitě.)"
 });
 
 examQuestions.push({
@@ -1036,7 +1102,8 @@ examQuestions.push({
     "correct": {
         "1": 1,
         "2": 0
-    }
+    },
+    "aiNote": "Ano: vyšší selekční tlak znamená agresivnější preferenci nejzdatnějších → více exploatace/intenzifikace kolem aktuálně dobrých oblastí."
 });
 
 examQuestions.push({
@@ -1048,7 +1115,8 @@ examQuestions.push({
     "correct": {
         "1": 0,
         "2": 1
-    }
+    },
+    "aiNote": "Ne: vyšší počáteční teplota zvyšuje pravděpodobnost přijetí zhoršení, takže algoritmus víc prozkoumává prostor a méně rychle „zamrzá“ v lokálním extrému."
 });
 
 examQuestions.push({
@@ -1060,7 +1128,8 @@ examQuestions.push({
     "correct": {
         "1": 0,
         "2": 1
-    }
+    },
+    "aiNote": "Ne: vyšší selekční tlak obvykle diverzitu snižuje (rychle převládne několik podobných elitních jedinců). Diverzifikace roste spíš se snížením tlaku nebo zvýšením mutace."
 });
 
 examQuestions.push({
@@ -1072,7 +1141,8 @@ examQuestions.push({
     "correct": {
         "1": 0,
         "2": 1
-    }
+    },
+    "aiNote": "Ne: mutace je primárně diverzifikační mechanismus (průzkum). Intenzifikaci zvyšuje selekce (vyšší selekční tlak) a elitismus."
 });
 
 examQuestions.push({
@@ -1084,7 +1154,8 @@ examQuestions.push({
     "correct": {
         "1": 1,
         "2": 0
-    }
+    },
+    "aiNote": "Zvětšení okolí (silnější tahy/bohatší sousedství) zvyšuje šanci překročit bariéry a snížit závislost na startu, protože se heuristika snáz dostane do jiných oblastí prostoru než jen do nejbližšího lokálního optima."
 });
 
 examQuestions.push({
@@ -1096,7 +1167,8 @@ examQuestions.push({
     "correct": {
         "1": 0,
         "2": 1
-    }
+    },
+    "aiNote": "Pokud z různých náhodných startů končíš pořád ve stejném (nebo velmi podobném) řešení, heuristika pravděpodobně má dost iterativní síly a není „roztříštěná“ do mnoha lokálních minim. Kdyby vždy končila jinde, spíš padá do různých lokálních minim podle startu."
 });
 
 examQuestions.push({
@@ -1112,7 +1184,8 @@ examQuestions.push({
         "2": 1,
         "3": 1,
         "4": 1
-    }
+    },
+    "aiNote": "Lineární programování je třída optimalizačních problémů (LP): lineární objektivní funkce a lineární omezení (rovnosti/nerovnosti). „Metody“ jsou pak např. simplex nebo interior-point, ale to je něco jiného než samotná definice problému."
 });
 
 examQuestions.push({
@@ -1124,7 +1197,8 @@ examQuestions.push({
     "correct": {
         "1": 1,
         "2": 0
-    }
+    },
+    "aiNote": "Ano: větší populace je víc vzorků prostoru a obvykle lépe udrží genetickou variabilitu (méně driftu, menší riziko ztráty diverzity)."
 });
 
 examQuestions.push({
@@ -1136,7 +1210,8 @@ examQuestions.push({
     "correct": {
         "1": 1,
         "2": 0
-    }
+    },
+    "aiNote": "Ano: mutace vnáší nové alely/variace, takže diverzita roste. Pozor jen na extrém: příliš vysoká mutace může rozbít konvergenci (divergence)."
 });
 
 examQuestions.push({
@@ -1148,7 +1223,8 @@ examQuestions.push({
     "correct": {
         "1": 1,
         "2": 0
-    }
+    },
+    "aiNote": "Ano: nižší selekční tlak znamená méně agresivní šíření elit → více různých jedinců přežije a diverzita se udrží / zvýší."
 });
 
 examQuestions.push({
@@ -1160,7 +1236,8 @@ examQuestions.push({
     "correct": {
         "1": 0,
         "2": 1
-    }
+    },
+    "aiNote": "Ne: zmenšení velikosti turnaje snižuje selekční tlak (víc rozhoduje náhoda), takže klesá intenzifikace a roste diverzifikace. Intenzifikaci naopak zvyšuje větší turnaj, protože častěji vyhrává nejzdatnější jedinec."
 });
 
 examQuestions.push({
@@ -1172,7 +1249,8 @@ examQuestions.push({
     "correct": {
         "1": 1,
         "2": 0
-    }
+    },
+    "aiNote": "Dostatečná iterativní síla znamená, že iterace „přebijí“ start: z různých počátečních řešení dojdeš ke stejnému výsledku. Pokud končíš různě, start/nahoda má stále velký vliv a síla je slabší."
 });
 
 examQuestions.push({
@@ -1188,7 +1266,8 @@ examQuestions.push({
         "2": 0,
         "3": 1,
         "4": 1
-    }
+    },
+    "aiNote": "Best-first je systematické prohledávání (správa OPEN), a při standardních předpokladech je úplné (najde řešení, pokud existuje) a může dát exaktní řešení (typicky včetně optimálního při vhodné evaluaci). Neposkytuje ale obecnou záruku polynomiální složitosti (může být exponenciální)."
 });
 
 examQuestions.push({
@@ -1204,7 +1283,8 @@ examQuestions.push({
         "2": 0,
         "3": 1,
         "4": 0
-    }
+    },
+    "aiNote": "Popis „stále se zlepšuje, fluktuace klesají, ale ještě se ani nevrátil na start“ vypadá jako běh, který by měl pokračovat (probíhá intenzifikace), jen se ukončí nevhodně/nezachytí konvergenci správně. Problém tedy není nutně v T0/Tk/α, ale ve stop podmínce (nedetekuje, že ještě není hotovo / ukončuje špatně)."
 });
 
 examQuestions.push({
@@ -1218,7 +1298,8 @@ examQuestions.push({
         "1": 1,
         "2": 0,
         "3": 1
-    }
+    },
+    "aiNote": "Turnajová selekce je parametrizovaná (velikost turnaje) → výsledky závisí na selekčním tlaku. Není univerzálně „lepší“ než jiné metody; jde o trade-off (diverzita vs intenzifikace). Při vhodném nastavení tlaku může dávat velmi podobné chování jako ruleta se správně nastaveným škálováním/rankingem."
 });
 
 examQuestions.push({
@@ -1232,5 +1313,6 @@ examQuestions.push({
         "1": 0,
         "2": 1,
         "3": 0
-    }
+    },
+    "aiNote": "Při µ=λ=1 máme v každém kroku právě jednoho „rodiče“ a vytvoří se jeden potomek; z dvojice {rodič, potomek} se ponechá lepší. To je přesně lokální iterativní heuristika typu „prvé zlepšení/přípustné zlepšení“ (ve smyslu: přijmi tah, pokud zlepší). Není to „nejlepší nejdříve“ (to vybírá nejlepší ze širší množiny otevřených stavů) ani náhodná procházka (ta by občas přijímala i horší stav)."
 });
