@@ -226,7 +226,7 @@ questions.push({
         2: "Jejich optimalizační kritérium se dá vždy vypočítat v polynomiálním čase (det. Turingovým strojem)",
         3: "Jsou řešitelné v polynomiálním čase nedet. tur. stroje"
     },
-    correct: {1: 1, 2: 1, 3: 1}
+    correct: {1: 1, 2: 0, 3: 0}
 });
 
 
