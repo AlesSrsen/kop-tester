@@ -725,11 +725,11 @@ examQuestions.push({
         "3": "vztah nelze vyjádřit"
     },
     "correct": {
-        "1": 0,
-        "2": 1,
+        "1": 1,
+        "2": 0,
         "3": 0
     },
-    "aiNote": "Více iterací na stejné teplotě = pomalejší „efektivní“ ochlazování v čase (víc práce dřív, než T klesne). To odpovídá menšímu koeficientu ochlazování (pomalejší snižování teploty)."
+    "aiNote": "Když prodloužíme equilibrium (víc kroků na stejné teplotě), teplota se v čase snižuje pomaleji (dáme systému víc času „promíchat“ se na dané T). To je ekvivalentní pomalejšímu ochlazování, tj. většímu koeficientu ochlazování ve smyslu „méně agresivního“ kroku (např. α blíž 1 v T_{k+1}=αT_k). Není to snížení koeficientu (to by zrychlilo ochlazení), a vztah vyjádřit lze."
 });
 
 examQuestions.push({
