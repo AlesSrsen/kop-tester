@@ -1222,7 +1222,7 @@ examQuestions.push({
 });
 
 examQuestions.push({
-    "question": "Genetický algoritmus tvoři novou generaci stylem mi + lambda, tj. ke generaci o mi jedincích se přidá lambda nových a z celku se vybere opět mi nejlepších jedinců. Pro mi = lambda = 1 je tento algoritmus vlastně:",
+    "question": "Genetický algoritmus tvoři novou generaci stylem µ + λ, tj. ke generaci o µ jedincích se přidá λ nových a z celku se vybere opět µ nejlepších jedinců. Pro µ = λ = 1 je tento algoritmus vlastně:",
     "answers": {
         "1": "metodou nejlepší nejdříve",
         "2": "metodou prvé zlepšení",
