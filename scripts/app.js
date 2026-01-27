@@ -14,6 +14,28 @@
         return array;
     }
 
+    // Debounced MathJax typesetting to batch multiple elements together
+    var mathjaxPendingElements = [];
+    var mathjaxTypesetScheduled = false;
+
+    function scheduleMathJaxTypeset(element) {
+        mathjaxPendingElements.push(element);
+        if (!mathjaxTypesetScheduled) {
+            mathjaxTypesetScheduled = true;
+            // Use setTimeout to batch all elements updated in the same digest cycle
+            setTimeout(function () {
+                var elements = mathjaxPendingElements;
+                mathjaxPendingElements = [];
+                mathjaxTypesetScheduled = false;
+
+                // Find common parent to typeset all at once, or typeset individually if needed
+                if (elements.length > 0) {
+                    MathJax.Hub.Queue(["Typeset", MathJax.Hub, elements]);
+                }
+            }, 0);
+        }
+    }
+
     paaApp.directive("mathjaxBind", function () {
         return {
             restrict: "A",
@@ -26,7 +48,7 @@
                         .html(value == undefined ? "" : value);
                     $element.html("");
                     $element.append($script);
-                    MathJax.Hub.Queue(["Reprocess", MathJax.Hub, $element[0]]);
+                    scheduleMathJaxTypeset($element[0]);
                 });
             }]
         };
