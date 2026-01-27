@@ -101,6 +101,13 @@
                 $scope.note = "";
             }
 
+            // Handle question image
+            if (questions.image) {
+                $scope.questionImage = questions.image;
+            } else {
+                $scope.questionImage = "";
+            }
+
             angular.forEach(questions.answers, function (value, key) {
 
                 fin.push({
@@ -154,7 +161,9 @@
         };
 
         (function () {
-            QUESTIONS = shuffleArray(questions);
+            // Use activeQuestions set by question set selector, fallback to questions
+            var questionsSource = window.activeQuestions || questions;
+            QUESTIONS = shuffleArray(questionsSource.slice()); // Clone to avoid modifying original
             $scope.setQuestions(QUESTIONS.pop());
         })();
 

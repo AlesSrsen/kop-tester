@@ -24,6 +24,7 @@
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script type="text/javascript" src="scripts/questions.js"></script>
+    <script type="text/javascript" src="scripts/exam/exam-questions-converted.js"></script>
 
     <link rel="stylesheet" href="style/main.css" />
 </head>
@@ -42,13 +43,21 @@
                         otázek
                     </p>
                 </div>
-                <a href="index.html"
+                <div class="flex items-center gap-3">
+                    <label class="text-slate-600 font-medium">Sada:</label>
+                    <select id="questionSetSelector"
+                        class="px-3 py-2 border-2 border-slate-200 rounded-xl bg-white text-slate-700 font-medium focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer text-sm">
+                        <option value="assessment">📘 Assessment</option>
+                        <option value="exam">📝 Exam</option>
+                    </select>
+                </div>
+                <a id="testerLink" href="index.html"
                     class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-xl transition-colors shadow-sm">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M11 17l-5-5m0 0l5-5m-5 5h12" />
                     </svg>
-                    Zpět na tester
+                    Späť na tester
                 </a>
             </div>
 
@@ -89,7 +98,7 @@
                         <div class="flex-1">
                             <span
                                 class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium mb-2 bg-blue-800 text-blue-100">
-                                #{{ $index + 1 }}
+                                <span ng-if="q.image" class="mr-1">🖼️</span>#{{ $index + 1 }}
                             </span>
                             <h2 class="text-lg font-semibold text-white leading-relaxed"
                                 ng-bind-html="renderMath(q.question)"></h2>
@@ -103,6 +112,12 @@
 
                 <!-- Answers (Expandable) -->
                 <section ng-show="q.expanded" class="p-6">
+                    <!-- Question Image -->
+                    <div ng-if="q.image" class="mb-6">
+                        <img ng-src="{{q.image}}" alt="Obrázok k otázke"
+                            class="max-w-full h-auto rounded-xl border border-slate-200 shadow-sm" />
+                    </div>
+
                     <!-- Multiple choice answers -->
                     <ul ng-if="q.answers" class="space-y-3">
                         <li ng-repeat="(key, answerText) in q.answers"
@@ -165,7 +180,7 @@
         <!-- Footer -->
         <footer class="border-t border-slate-200 pt-6 mt-12">
             <nav class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500">
-                <a href="index.html" class="hover:text-blue-600 transition-colors">Tester</a>
+                <a id="testerLinkFooter" href="index.html" class="hover:text-blue-600 transition-colors">Tester</a>
                 <span class="hidden sm:inline">•</span>
                 <span>2016–2026</span>
                 <span class="hidden sm:inline">•</span>
@@ -205,8 +220,17 @@
             "$scope",
             "$sce",
             function ($scope, $sce) {
+                // Get question set from URL parameter
+                var urlParams = new URLSearchParams(window.location.search);
+                var questionSet = urlParams.get('set') || 'assessment';
+
+                // Select the appropriate question source
+                var questionsSource = questionSet === 'exam'
+                    ? (window.examQuestions || [])
+                    : (window.questions || []);
+
                 // Initialize data from questions array
-                $scope.allQuestions = questions.map(function (q, index) {
+                $scope.allQuestions = questionsSource.map(function (q, index) {
                     return angular.extend({}, q, {
                         expanded: false,
                         originalIndex: index,
@@ -292,6 +316,32 @@
                 }, 500);
             },
         ]);
+    </script>
+
+    <script type="text/javascript">
+        // Question set selector management
+        (function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var questionSet = urlParams.get('set') || 'assessment';
+
+            // Set selector value
+            var selector = document.getElementById('questionSetSelector');
+            var testerLink = document.getElementById('testerLink');
+            var testerLinkFooter = document.getElementById('testerLinkFooter');
+
+            selector.value = questionSet;
+
+            // Update tester links to preserve question set
+            testerLink.href = 'index.html?set=' + questionSet;
+            testerLinkFooter.href = 'index.html?set=' + questionSet;
+
+            // Handle selector change
+            selector.addEventListener('change', function () {
+                var newSet = this.value;
+                var newUrl = window.location.pathname + '?set=' + newSet;
+                window.location.href = newUrl;
+            });
+        })();
     </script>
 </body>
 
