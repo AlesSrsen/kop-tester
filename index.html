@@ -99,6 +99,20 @@
                     </p>
                 </aside>
 
+                <!-- AI Note Section -->
+                <aside ng-if="aiNote && ss" class="mt-6 p-4 bg-purple-50 rounded-xl border border-purple-200">
+                    <div class="flex items-start gap-2">
+                        <span
+                            class="inline-flex items-center size-8 aspect-square justify-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-600 text-white">
+                            📝
+                        </span>
+                        <span class="text-slate-700" dynamic="aiNote"></span>
+                    </div>
+                    <p class="mt-3 text-xs text-purple-600 italic">
+                        🤖 Tato poznámka byla vygenerována AI na základě přednášek.
+                    </p>
+                </aside>
+
                 <!-- Text Answer Section -->
                 <div ng-show="textAnswer" class="mt-6">
                     <textarea

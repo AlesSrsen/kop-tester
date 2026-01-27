@@ -101,6 +101,13 @@
                 $scope.note = "";
             }
 
+            // Handle AI-generated note
+            if (questions.aiNote) {
+                $scope.aiNote = questions.aiNote;
+            } else {
+                $scope.aiNote = "";
+            }
+
             // Handle question image
             if (questions.image) {
                 $scope.questionImage = questions.image;
@@ -186,6 +193,7 @@
             currentQuestionIndex++;
             $scope.questionText = "";
             $scope.note = "";
+            $scope.aiNote = "";
 
             $scope.ss = false;
             $scope.selection = [];

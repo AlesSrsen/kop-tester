@@ -19,8 +19,7 @@ examQuestions.push({
         "3": 1,
         "4": 1,
         "5": 0
-    },
-    "aiNote": "Stavový/prohledávací prostor obecně není strom ani acyklický (operátory mohou tvořit cykly). Heuristika typicky končí po konečně mnoha krocích (např. konečný prostor + pravidla zastavení). Souvislost závisí na tom, jaký „swap“ je povolen: některé definice operátoru mohou zachovat invariant (→ graf se rozpadne), jiné transpozice na pozicích obvykle konektivitu zachovají."
+    }
 });
 
 examQuestions.push({
@@ -37,8 +36,7 @@ examQuestions.push({
         "2": 0,
         "3": 0,
         "4": 1
-    },
-    "aiNote": "Počet konfigurací obvykle roste exponenciálně s počtem rozhodnutí K (kombinatorická exploze), ne jen kvadraticky v n,m. Okolí generované operátory je typicky úměrné „počtu možných lokálních změn“ – zde K (např. volba jedné z K alternativ), nikoli mn pro každý prvek."
+    }
 });
 
 examQuestions.push({
