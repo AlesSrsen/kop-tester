@@ -21,6 +21,9 @@
     <script type="text/javascript" async
         src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
+    <!-- Marked Markdown Renderer -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@15.0.6/marked.min.js"></script>
+
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script type="text/javascript" src="scripts/questions.js"></script>
@@ -256,9 +259,28 @@
                 $scope.searchQuery = "";
                 $scope.allExpanded = false;
 
-                // Render math (simple replacement for display)
+                // Render markdown and math
                 $scope.renderMath = function (text) {
                     if (!text) return "";
+                    
+                    // Parse markdown using marked if available (with breaks to preserve newlines)
+                    if (window.marked) {
+                        // Preserve multiple consecutive newlines
+                        text = text.replace(/\n\n+/g, function(match) {
+                            var count = match.length - 1;
+                            var result = '\n';
+                            for (var i = 0; i < count; i++) {
+                                result += '%%BLANKLINE%%\n';
+                            }
+                            return result;
+                        });
+                        
+                        text = marked.parse(text, { breaks: true });
+                        
+                        // Restore blank lines as <br> elements
+                        text = text.replace(/%%BLANKLINE%%/g, '<br>');
+                    }
+                    
                     return $sce.trustAsHtml(text);
                 };
 

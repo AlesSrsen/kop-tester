@@ -26,20 +26,82 @@ examQuestions.push({
     "question": "",
     "image": "assets/exam/toky-ve-stromu-2026-01-20.png",
     "answer": `
-Konfigurační proměnné:<br/>
-Vektor délky k obsahující toky (celá čísla) pro dané páry uzlů.<br/><br/>
+10/10 odpověď:   
 
-Stavový prostor:<br/>
-Stav je konkrétní ohodnocení konfiguračních proměnných. Jelikož připouštíme i ohodnocení, které není řešením, nějaká relaxace je nutná (např. kombinace celkového přetížení a relativního přetížení na jednotlivých hranách). Kdybychom se chtěli relaxaci vyhnout, mohli bychom vždy po nějaké operaci zkontrolovat, že se jedná o řešení, popřípadě snižovat postupně váhy (např. náhodným tokům), dokud to řešení není.<br/><br/>
-Operace: zvýšení/snížení hodnoty jednoho toku.<br/>
-Stavový prostor je silně souvislý, jelikož každý stav je dosažitelný z každého jiného stavu pomocí aplikování operací.<br/><br/>
+Konfigurační proměnné:
+Vektor délky k obsahující toky (celá čísla) pro dané páry uzlů.
 
-Počáteční řešení:<br/>
-Jednoduché: vektor samých nul.<br/>
-Složitější: vektor náhodných čísel, jejichž součet nepřesahuje kapacitu hrany s maximální kapacitou. Pokud nepřipouštíme ohodnocení, které nejsou řešením, museli bychom takovýto vektor ještě opravit snižováním hodnot náhodným tokům.<br/><br/>
+Stavový prostor:
+Stav je konkrétní ohodnocení konfiguračních proměnných. Jelikož připouštíme i ohodnocení, které není řešením, nějaká relaxace je nutná (např. kombinace celkového přetížení a relativního přetížení na jednotlivých hranách). Kdybychom se chtěli relaxaci vyhnout, mohli bychom vždy po nějaké operaci zkontrolovat, že se jedná o řešení, popřípadě snižovat postupně váhy (např. náhodným tokům), dokud to řešení není.
+Operace: zvýšení/snížení hodnoty jednoho toku.
+Stavový prostor je silně souvislý, jelikož každý stav je dosažitelný z každého jiného stavu pomocí aplikování operací.
+
+Počáteční řešení:
+Jednoduché: vektor samých nul.
+Složitější: vektor náhodných čísel, jejichž součet nepřesahuje kapacitu hrany s maximální kapacitou. Pokud nepřipouštíme ohodnocení, které nejsou řešením, museli bychom takovýto vektor ještě opravit snižováním hodnot náhodným tokům.
 Díky silné souvislosti stavového prostoru by mělo optimální řešení být dosažitelné bez ohledu na počáteční řešení.
 `
 });
+
+examQuestions.push({
+    "question": "",
+    "image": "assets/exam/toky-ve-stromu-2025-02-10.png",
+    "answer": `
+10/10 odpověď:   
+
+Konfigurační proměnné
+Vektor o délce k (počet párů), kde oborem hodnot vektoru jsou celá čísla (reprezentující celočíselné toky přiřazené ke konkrétním párům uzlü).
+Platí zde omezení, že součet všech toků (hodnot ve vektoru) nesmí přesáhnout kapacitu žádné hrany na cestě mezi páry s_j a t_j.
+
+Druh simulované evoluce
+Pro tento problém bych zvolil genetický algoritmus, z dúvodu, že pracujeme s vektorem s celočíselným oborem a diky tomu ho Ize jednoduše použít.
+
+Reprezentace individua
+Individuum je reprezentováno ohodnocením konfiguračních proměnných - ohodnocením vektoru popsáného v bodě 1. Jednoduše získám zdatnost individua - součet toků ve vektoru.
+
+Genetické operátory
+Mutace - unární operátor. Realizováno zvýšením/snížením celočíselného toku pro konkrétní pár. Je nutné ověřit, zda po mutaci platí omezení.
+Křižení - binární operátor - např. jednobodové. Po křížení je opět nutné ověřit platnost omezení.
+
+Pocáteční generace
+Generace několika vektorů, např se samými nulami nebo náhodným ohodnocením. Při náhodném ohodnocení je nutné ověrit platnost omezení.
+`
+});
+
+
+examQuestions.push({
+    "question": "",
+    "image": "assets/exam/min-sum-procedure-2025-01-16.png",
+    "answer": `
+10/10 odpověď:   
+    
+Konfigurační proměnné
+Potřebujeme reprezentovat posloupnost A, budeme zapisovat do vectoru o délce r. Daný index ve vektoru bude označovat, zda dané číslo v posloupnosti je, nebo není. Tedy pro např. posloupnost (1,2,3,4,7,10,20) by mohl vektor vypadat následovně (1,1,1,1,0,0,1,0,0,1,0..0,1).
+Konfigurační proměnná by byla nějaké ohodnocení daného vektoru
+Obor hodnot by byla jakákoliv konfigurace/ohodnocení takového vektoru - všechny možnosti
+
+Stavový prostor
+
+Obsahuje nějakou konfigurační proměnnou z minulé sekci
+Ohodnocení daného stavu je dané počtem 1 v daném vectoru + zda je daná posloupnost validní
+Přesun do nového stavu by bylo dosaženo náhodným zaměněním hodnoty ve vectoru - tedy bud' z 0 na 1 nebo z 1 na 0 (krom prvního indexu, který musí být vždy součástí řešení)
+Ohodnocení - cost funkce - daného algoritmu je daná počtem 1 ve vectoru - menší počet jedniček je lepší než větší - optimalizujeme dle délky posloupnosti, čím kratší tím lepší. Vzhledem k tomu, že povolujeme nevalidní ohodnocení, musíme tyto stavy penalizovat dostatečnou vahou, aby nebyl preferované nad validními řešením, ikdyž by řešení mělo delší posloupnost
+
+- povolujeme jistou míru relaxace
+
+Vlastnosti stavového prostoru
+
+Toto řešení povoluje i nevalidní stavy, protože v posloupnosti múže být v nějaké konfiguraci číslo, které nelze vytvořit sečtením předcházejících prvků v posloupnosti - tyto proměnné musíme penalizovat.
+Ohodnocení (cost) a přesuny viz předešlá sekce
+Dalo by se to obejit asi možností, kde bysme generovali proměnné postupně z nulového vektoru jen kombinacemi proměnných již obsáhnuté daným vektorem, pak by přechody mezi stavy byly vždy validní a nemuselo by se relaxoval
+
+Počáteční řešení
+
+Triviální by byla konfigurace definovaná vectorem plným 0 až na první pozici, kde by byla 1 (dané prvním bodem v řeseni)
+Dalsí možnost by byla nahodné ohodnocení daného vektoru, které müze vygenerovat i nevaldiní resení. Nicméné stavový prostor je silné souvislý, takže by nemel mit na resení vliv.
+`
+});
+
 
 
 examQuestions.push({

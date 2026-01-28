@@ -60,8 +60,60 @@
             replace: true,
             link: function (scope, ele, attrs) {
                 scope.$watch(attrs.dynamic, function (html) {
-                    html = html.replace(/\$\$([^$]+)\$\$/g, "<span class=\"blue\" mathjax-bind=\"$1\"></span>");
-                    html = html.replace(/\$([^$]+)\$/g, "<span class=\"red\" mathjax-bind=\"$1\"></span>");
+                    if (!html) {
+                        ele.html('');
+                        return;
+                    }
+
+                    // First render markdown using marked if available
+                    if (window.marked) {
+                        // Protect MathJax delimiters from markdown processing
+                        var mathBlocks = [];
+                        var inlineMath = [];
+
+                        // Protect display math $$...$$
+                        html = html.replace(/\$\$([^$]+)\$\$/g, function (match, content) {
+                            mathBlocks.push(content);
+                            return '%%MATHBLOCK' + (mathBlocks.length - 1) + '%%';
+                        });
+
+                        // Protect inline math $...$
+                        html = html.replace(/\$([^$]+)\$/g, function (match, content) {
+                            inlineMath.push(content);
+                            return '%%INLINEMATH' + (inlineMath.length - 1) + '%%';
+                        });
+
+                        // Preserve multiple consecutive newlines (empty lines become placeholder)
+                        html = html.replace(/\n\n+/g, function (match) {
+                            // Each double+ newline becomes paragraph breaks
+                            var count = match.length - 1; // number of line breaks to insert
+                            var result = '\n';
+                            for (var i = 0; i < count; i++) {
+                                result += '%%BLANKLINE%%\n';
+                            }
+                            return result;
+                        });
+
+                        // Parse markdown with breaks enabled to preserve newlines
+                        html = marked.parse(html, { breaks: true });
+
+                        // Restore blank lines as <br> elements
+                        html = html.replace(/%%BLANKLINE%%/g, '<br>');
+
+                        // Restore MathJax delimiters with spans
+                        html = html.replace(/%%MATHBLOCK(\d+)%%/g, function (match, idx) {
+                            return '<span class="blue" mathjax-bind="' + mathBlocks[parseInt(idx)] + '"></span>';
+                        });
+
+                        html = html.replace(/%%INLINEMATH(\d+)%%/g, function (match, idx) {
+                            return '<span class="red" mathjax-bind="' + inlineMath[parseInt(idx)] + '"></span>';
+                        });
+                    } else {
+                        // Fallback to original behavior if marked is not available
+                        html = html.replace(/\$\$([^$]+)\$\$/g, "<span class=\"blue\" mathjax-bind=\"$1\"></span>");
+                        html = html.replace(/\$([^$]+)\$/g, "<span class=\"red\" mathjax-bind=\"$1\"></span>");
+                    }
+
                     ele.html(html);
                     $compile(ele.contents())(scope);
                 });
