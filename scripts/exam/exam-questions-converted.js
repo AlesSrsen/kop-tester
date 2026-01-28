@@ -5,7 +5,7 @@ var examQuestions = [];
 
 examQuestions.push({
     "question": "",
-    "image": "assets/exam/696d296aa49c4f8e0bfa525c_q1.png",
+    "image": "assets/exam/diskretne-rozmisteni.png",
     "answers": {
         "1": "Prohledávací prostor je vždy orientovaným stromem",
         "2": "Prohledávací prostor je acyklický",
@@ -103,7 +103,7 @@ Dalsí možnost by byla nahodné ohodnocení daného vektoru, které müze vygen
 
 examQuestions.push({
     "question": "",
-    "image": "assets/exam/696d29fcb0377ef270e69bde_q2.png",
+    "image": "assets/exam/obdelnikove-pokryti.png",
     "answers": {
         "1": "Asymptotická horní mez velikosti stavového prostoru roste exponenciálně s K",
         "2": "Asymptotická horní mez velikosti stavového prostoru roste kvadraticky s n a m",
