@@ -23,7 +23,7 @@ examQuestions.push({
 });
 
 examQuestions.push({
-    "question": "",
+    "question": "Open Question",
     "image": "assets/exam/toky-ve-stromu-2026-01-20.png",
     "answer": `
 10/10 odpověď:   
@@ -44,7 +44,7 @@ Díky silné souvislosti stavového prostoru by mělo optimální řešení být
 });
 
 examQuestions.push({
-    "question": "",
+    "question": "Open Question",
     "image": "assets/exam/toky-ve-stromu-2025-02-10.png",
     "answer": `
 10/10 odpověď:   
@@ -70,7 +70,7 @@ Generace několika vektorů, např se samými nulami nebo náhodným ohodnocení
 
 
 examQuestions.push({
-    "question": "",
+    "question": "Open Question",
     "image": "assets/exam/min-sum-procedure-2025-01-16.png",
     "answer": `
 10/10 odpověď:   
