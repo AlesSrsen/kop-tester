@@ -175,6 +175,11 @@
                             </span>
                             <span class="text-slate-700" ng-bind-html="renderMath(q.answer)"></span>
                         </p>
+                        <!-- Answer Image -->
+                        <div ng-if="q.answerImage" class="mt-4">
+                            <img ng-src="{{q.answerImage}}" alt="Obrázok k odpovedi"
+                                class="max-w-full h-auto rounded-lg border border-slate-200 shadow-sm" />
+                        </div>
                     </aside>
                 </section>
             </article>

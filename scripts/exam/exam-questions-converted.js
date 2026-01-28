@@ -4,7 +4,7 @@
 var examQuestions = [];
 
 examQuestions.push({
-    "question": "",
+    "question": "Problém diskrétního rozmístění",
     "image": "assets/exam/diskretne-rozmisteni.png",
     "answers": {
         "1": "Prohledávací prostor je vždy orientovaným stromem",
@@ -23,7 +23,44 @@ examQuestions.push({
 });
 
 examQuestions.push({
-    "question": "Open Question",
+    "question": "Open Question - Problém kvadratického přiřazení",
+    "image": "assets/exam/kvadraticke-prirazeni-2025-01-21.png",
+    "answer": `
+9/10 bodov:
+
+Konfiguracni promenne
+jedinec bude definovan vektorem o velikosti n, kde na i-tem indexu bude k_i modul z K, hodnoty, ktere budeme prirazovat z P, je treba si ale pohlidat, ze kazda hodnota z P je pouzita prave jednou abychom splnili podminku proste prirazeni, obor hodnot jsou vsechny permutace techto vektoru rozlozeni, ktere splnuji zminenou podminku
+
+Simulovana evoluce druh
+pro tento problem bych zvolil geneticky algortimus, moznosti budou urcite permutace rozlozeni pozic P do jednotlivych pozic vektoru, ktery reprezentuje moduly k_i z K
+
+Reprezentace inclvidua
+vektor s n pozicemi, kazda reprezentuje k_i z K a hodnota na dane pozici reprezentuje p_i z P
+
+Geneticke operatory
+Mutace - unarni operator - prohodim hodnoty na dvou ruznych pozicich
+Krizeni - binarni operator - z prvniho jedince vezmu prvni polovinu vektoru a z druheho druhou polovinu, tzn jednobodove krizeni 
+timto zpusobem je mozne v algoritmu dosahnout jakekoliv permutace tedy celeho oboru hodnot
+
+Pocatecni generace
+Nahodne vygenerovane vektory, kdy se zadna hodnota neopakuje, pocet bude dan dle velikosti pocatecni generace
+
+**Komentář opravujíciho:**
+Problém je permutační -použít permutační operátor
+`
+});
+
+examQuestions.push({
+    "question": "Open Question - Problém minimální transformace stromu",
+    "image": "assets/exam/transformace-stromu-2025-01-10.png",
+    "answer": `
+8/10 odpověď; 2025-01-10
+`,
+    "answerImage": "assets/exam/transformace-stromu-2025-01-10-answer.png"
+});
+
+examQuestions.push({
+    "question": "Open Question - Problém celočíselných multikomoditních toků ve stromu",
     "image": "assets/exam/toky-ve-stromu-2026-01-20.png",
     "answer": `
 10/10 odpověď:   
@@ -44,7 +81,39 @@ Díky silné souvislosti stavového prostoru by mělo optimální řešení být
 });
 
 examQuestions.push({
-    "question": "Open Question",
+    "question": "Open Question - Problém minimálního regulárního výrazu",
+    "image": "assets/exam/minimalni-regularni-vyraz-2025-02-14.png",
+    "answer": `
+9/10 bodov:
+
+**Konfigurační proměnné:**
+Ohodnocení konfiguračních proměnných nám musí jednoznačně určit řešení - regulární výraz s danými operátory. Tedy konfigurační proměnné musí dokázat nějak reprezentovat výraz - strom.
+
+Obor konfiguračních proměnných potom budou znaky abecedy spolu se symboly pro operátory.
+
+**Druh simulované evoluce:**
+Jelikož reprezentace bude nějaký výraz, použil bych jako druh genetické programování. U tohoto druhu máme reprezentaci jako stromovou strukturu. My máme literály a operace mezi nimi, což nám vytvoří nové stromy a mezi nimi můžeme mít zase operace. To nám dává stromovou strukturu.
+
+**Reprezentace individua:**
+Pro reprezentaci individua budeme potřebovat reprezentovat daný regulární výraz. Vhodnou reprezentací je stromová struktura. V listech stromu se budou nacházet znaky abecedy, v nelistech potom operátory regulárního výrazu.
+Výpočet fitness pro konkrétní individum bude spočívat ve spočítání listů daného stromu. Protože znaky abecedy se mohou nacházet pouze v listech.
+
+**Genetické operátory:**
+*Mutace (unární operátor):*
+Nahrazení znaku abecedy v listu jiným znakem nebo nahrazení operátoru v uzlu jiným operátorem. Po změně musíme ověřit, že nově vzniklý regulární výraz odpovídá všem řetězcům z P a žádnému z N.
+*Křížení (binární operátor):*
+Použil bych operátor, který vezme nějakou část výrazu (podstrom) a nahradí ho podstromem z druhého individua. Po změně musíme ověřit, že nově vzniklý regulární výraz odpovídá všem řetězcům z P a žádnému z N.
+
+**Generování počáteční generace:**
+Jako počáteční generaci bych zvolil regulární výrazy, které generují pouze jednotlivé znaky abecedy. Jejich postupným křížením postupně vytvoříme celý stavový prostor.
+
+**Komentár opravujícího**
+Obor konf. proměnných jsou stromy zmíněných vlastností. Abeceda a reg. operátory jsou jen ohodnocení uzlů.
+`
+});
+
+examQuestions.push({
+    "question": "Open Question - Problém celočíselných multikomoditních toků ve stromu",
     "image": "assets/exam/toky-ve-stromu-2025-02-10.png",
     "answer": `
 10/10 odpověď:   
@@ -70,7 +139,7 @@ Generace několika vektorů, např se samými nulami nebo náhodným ohodnocení
 
 
 examQuestions.push({
-    "question": "Open Question",
+    "question": "Open Question - Problém minimální sčítací procedury (addition-sequence problem)",
     "image": "assets/exam/min-sum-procedure-2025-01-16.png",
     "answer": `
 10/10 odpověď:   
@@ -102,7 +171,7 @@ Dalsí možnost by byla nahodné ohodnocení daného vektoru, které müze vygen
 
 
 examQuestions.push({
-    "question": "",
+    "question": "Formulace rozhodovacího problému minimálního obdélnikového pokrytí",
     "image": "assets/exam/obdelnikove-pokryti.png",
     "answers": {
         "1": "Asymptotická horní mez velikosti stavového prostoru roste exponenciálně s K",

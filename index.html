@@ -1,15 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="cs">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>KOP tester</title>
 
     <!-- Emoji Favicon -->
-    <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>"
+    />
 
     <!-- Tailwind CSS v4 -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -18,8 +19,11 @@
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({showMathMenu:false, tex2jax: {inlineMath: [['$','$']]}});
     </script>
-    <script type="text/javascript" async
-        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script
+      type="text/javascript"
+      async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    ></script>
 
     <!-- Marked Markdown Renderer -->
     <script src="https://cdn.jsdelivr.net/npm/marked@15.0.6/marked.min.js"></script>
@@ -27,270 +31,416 @@
     <!-- AngularJS -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script type="text/javascript" src="scripts/questions.js"></script>
-    <script type="text/javascript" src="scripts/exam/exam-questions-converted.js"></script>
+    <script
+      type="text/javascript"
+      src="scripts/exam/exam-questions-converted.js"
+    ></script>
     <script type="text/javascript" src="scripts/app.js"></script>
 
     <link rel="stylesheet" href="style/main.css" />
-</head>
+  </head>
 
-<body ng-app="paaApp" class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen">
+  <body
+    ng-app="paaApp"
+    class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen"
+  >
     <!-- Question Set Selector -->
     <div class="max-w-4xl mx-auto px-4 pt-6">
-        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
-            <div class="flex items-center gap-3">
-                <label class="text-slate-600 font-medium">Sada otázok:</label>
-                <select id="questionSetSelector"
-                    class="px-4 py-2 border-2 border-slate-200 rounded-xl bg-white text-slate-700 font-medium focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer">
-                    <option value="assessment">📘 Assessment</option>
-                    <option value="exam">📝 Exam</option>
-                </select>
-            </div>
-            <span id="questionCount" class="text-sm text-slate-500"></span>
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+        <div class="flex items-center gap-3">
+          <label class="text-slate-600 font-medium">Sada otázok:</label>
+          <select
+            id="questionSetSelector"
+            class="px-4 py-2 border-2 border-slate-200 rounded-xl bg-white text-slate-700 font-medium focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
+          >
+            <option value="assessment">📘 Assessment</option>
+            <option value="exam">📝 Exam</option>
+          </select>
         </div>
+        <span id="questionCount" class="text-sm text-slate-500"></span>
+      </div>
     </div>
-    <main class="max-w-4xl mx-auto px-4 py-4" ng-controller="QuestionsController">
-        <!-- Question Card -->
-        <article class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden mb-6">
-            <header class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
-                <h1 class="text-lg md:text-xl font-semibold text-white leading-relaxed">
-                    <span dynamic="questionText"></span>
-                </h1>
-            </header>
+    <main
+      class="max-w-4xl mx-auto px-4 py-4"
+      ng-controller="QuestionsController"
+    >
+      <!-- Question Card -->
+      <article
+        class="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden mb-6"
+      >
+        <header class="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+          <h1
+            class="text-lg md:text-xl font-semibold text-white leading-relaxed"
+          >
+            <span dynamic="questionText"></span>
+          </h1>
+        </header>
 
-            <section class="p-6">
-                <!-- Question Image -->
-                <div ng-if="questionImage" class="mb-6">
-                    <img ng-src="{{questionImage}}" alt="Obrázok k otázke"
-                        class="max-w-full h-auto rounded-xl border border-slate-200 shadow-sm" />
-                </div>
+        <section class="p-6">
+          <!-- Question Image -->
+          <div ng-if="questionImage" class="mb-6">
+            <img
+              ng-src="{{questionImage}}"
+              alt="Obrázok k otázke"
+              class="max-w-full h-auto rounded-xl border border-slate-200 shadow-sm"
+            />
+          </div>
 
-                <form action="" role="form">
-                    <fieldset class="space-y-3">
-                        <div ng-repeat="qu in question"
-                            class="relative flex items-start p-4 rounded-xl border-2 transition-all duration-200 cursor-pointer select-none"
-                            ng-class="{
+          <form action="" role="form">
+            <fieldset class="space-y-3">
+              <div
+                ng-repeat="qu in question"
+                class="relative flex items-start p-4 rounded-xl border-2 transition-all duration-200 cursor-pointer select-none"
+                ng-class="{
                              'border-red-400 bg-red-50': !isCorrect(qu) && ss,
                              'border-green-400 bg-green-50': isCorrect(qu) && ss,
                              'border-slate-200 hover:border-blue-300 hover:bg-blue-50/50': !ss,
                              'cursor-default': ss
-                         }" ng-click="!ss && toggleSelection(qu)">
-                            <div class="flex items-start gap-3 w-full">
-                                <input type="checkbox" ng-disabled="ss" ng-checked="selection.indexOf(qu) > -1"
-                                    class="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 focus:ring-2 transition-colors disabled:opacity-50 pointer-events-none" />
-                                <span class="flex-1 text-slate-700" dynamic="qu.text"></span>
+                         }"
+                ng-click="!ss && toggleSelection(qu)"
+              >
+                <div class="flex items-start gap-3 w-full">
+                  <input
+                    type="checkbox"
+                    ng-disabled="ss"
+                    ng-checked="selection.indexOf(qu) > -1"
+                    class="mt-1 w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500 focus:ring-2 transition-colors disabled:opacity-50 pointer-events-none"
+                  />
+                  <span class="flex-1 text-slate-700" dynamic="qu.text"></span>
 
-                                <span ng-show="!isCorrect(qu) && ss" class="flex-shrink-0 text-red-500">
-                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd"
-                                            d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </span>
-                            </div>
-                        </div>
-                    </fieldset>
-                </form>
-
-                <!-- Note Section -->
-                <aside ng-if="note && ss" class="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200">
-                    <p class="flex items-start gap-2">
-                        <span
-                            class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-600 text-white">
-                            Poznámka
-                        </span>
-                        <span class="text-slate-700" dynamic="note"></span>
-                    </p>
-                </aside>
-
-                <!-- AI Note Section -->
-                <aside ng-if="aiNote && ss" class="mt-6 p-4 bg-purple-50 rounded-xl border border-purple-200">
-                    <div class="flex items-start gap-2">
-                        <span
-                            class="inline-flex items-center size-8 aspect-square justify-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-600 text-white">
-                            📝
-                        </span>
-                        <span class="text-slate-700" dynamic="aiNote"></span>
-                    </div>
-                    <p class="mt-3 text-xs text-purple-600 italic">
-                        🤖 Tato poznámka byla vygenerována AI na základě přednášek.
-                    </p>
-                </aside>
-
-                <!-- Text Answer Section -->
-                <div ng-show="textAnswer" class="mt-6">
-                    <textarea
-                        class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all resize-none text-slate-700"
-                        rows="5" ng-model="userText" placeholder="Napíšte svoju odpoveď..."></textarea>
-
-                    <div ng-if="ss" class="mt-4 space-y-4">
-                        <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
-                            <p class="text-slate-700" dynamic="textAnswer"></p>
-                        </div>
-
-                        <nav class="flex gap-3" role="group" aria-label="Hodnotenie odpovede">
-                            <button type="button" ng-click="nextOK()"
-                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl transition-colors shadow-sm">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
-                                </svg>
-                                Správne
-                            </button>
-                            <button type="button" ng-click="nextWrong()"
-                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white font-medium rounded-xl transition-colors shadow-sm">
-                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                    <path
-                                        d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z" />
-                                </svg>
-                                Nesprávne
-                            </button>
-                        </nav>
-                    </div>
+                  <span
+                    ng-show="!isCorrect(qu) && ss"
+                    class="flex-shrink-0 text-red-500"
+                  >
+                    <svg
+                      class="w-5 h-5"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </span>
                 </div>
-            </section>
-        </article>
+              </div>
+            </fieldset>
+          </form>
 
-        <!-- Action Buttons -->
-        <nav class="flex flex-wrap gap-3 mb-6" role="group" aria-label="Ovládanie testu">
-            <button type="button" ng-disabled="ss" ng-click="solve(selectedAnswers)"
-                class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 disabled:cursor-not-allowed text-white font-medium rounded-xl transition-colors shadow-sm">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Vyhodnotiť
-            </button>
-            <button type="button" ng-click="next()" ng-disabled="!ss" ng-if="!textAnswer"
-                class="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-slate-50 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed text-slate-700 font-medium rounded-xl border-2 border-slate-200 hover:border-slate-300 transition-colors shadow-sm">
-                Ďalšia otázka
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-            </button>
-        </nav>
-
-        <!-- Stats Section -->
-        <section
-            class="flex flex-wrap items-center justify-between gap-4 p-4 bg-white rounded-xl border border-slate-200 shadow-sm mb-8">
-            <div class="flex flex-wrap items-center gap-4">
-                <div class="flex items-center gap-2">
-                    <span class="text-slate-600">Chybne:</span>
-                    <span
-                        class="inline-flex items-center justify-center min-w-[2rem] px-2.5 py-1 bg-red-100 text-red-700 font-semibold rounded-lg">
-                        {{ totalErrors }}
-                    </span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="text-slate-600">Správne:</span>
-                    <span
-                        class="inline-flex items-center justify-center min-w-[2rem] px-2.5 py-1 bg-green-100 text-green-700 font-semibold rounded-lg">
-                        {{ totalOK }}
-                    </span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <span class="text-slate-600">Zostáva otázok:</span>
-                    <span
-                        class="inline-flex items-center justify-center min-w-[2rem] px-2.5 py-1 bg-slate-100 text-slate-700 font-semibold rounded-lg">
-                        {{ total }}
-                    </span>
-                </div>
-            </div>
-            <a id="overviewLink" href="overview.html"
-                class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-lg transition-colors border border-slate-200">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
-                </svg>
-                Prehľad otázok
-            </a>
-        </section>
-
-        <!-- Answer Evaluation Legend -->
-        <aside ng-if="ss && !textAnswer"
-            class="flex flex-wrap items-center gap-4 p-4 bg-white rounded-xl border border-slate-200 shadow-sm mb-8 text-sm">
-            <span class="font-medium text-slate-600">Legenda vyhodnotenia:</span>
-            <span class="flex items-center gap-2">
-                <span class="w-4 h-4 rounded border-2 border-green-400 bg-green-50"></span>
-                <span class="text-slate-600">Správne označené/neoznačené</span>
-            </span>
-            <span class="flex items-center gap-2">
-                <span class="relative w-4 h-4 rounded border-2 border-red-400 bg-red-50">
-                    <span class="absolute inset-0 flex items-center justify-center text-xs text-red-500">✓</span>
-                </span>
-                <span class="text-slate-600">Nemalo byť označené</span>
-            </span>
-            <span class="flex items-center gap-2">
-                <span class="w-4 h-4 rounded border-2 border-red-400 bg-red-50"></span>
-                <span class="text-slate-600">Malo byť označené</span>
-            </span>
-        </aside>
-
-        <!-- Footer -->
-        <footer class="border-t border-slate-200 pt-6">
-            <nav class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500">
-                <a href="#" onclick="event.preventDefault(); location.reload(true);"
-                    class="hover:text-blue-600 transition-colors">Reset testeru</a>
-                <span class="hidden sm:inline">•</span>
-                <span>2016–2026</span>
-                <span class="hidden sm:inline">•</span>
-                <a href="https://gitlab.com/novacto3/paa-tester-2" target="_blank" rel="noopener noreferrer"
-                    class="hover:text-blue-600 transition-colors">
-                    Zdrojové kódy na Gitlabu
-                </a>
-                <span class="hidden sm:inline">•</span>
-                <a href="https://github.com/AlesSrsen/kop-tester" target="_blank" rel="noopener noreferrer"
-                    class="hover:text-blue-600 transition-colors">
-                    Aktuálna stránka na GitHub
-                </a>
-            </nav>
-            <p class="mt-3 text-sm text-slate-500">
-                <a href="https://srsen.me" target="_blank" rel="noopener noreferrer"
-                    class="hover:text-blue-600 transition-colors">
-                    🐝 srsen.me
-                </a>
+          <!-- Note Section -->
+          <aside
+            ng-if="note && ss"
+            class="mt-6 p-4 bg-blue-50 rounded-xl border border-blue-200"
+          >
+            <p class="flex items-start gap-2">
+              <span
+                class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-600 text-white"
+              >
+                Poznámka
+              </span>
+              <span class="text-slate-700" dynamic="note"></span>
             </p>
-        </footer>
+          </aside>
+
+          <!-- AI Note Section -->
+          <aside
+            ng-if="aiNote && ss"
+            class="mt-6 p-4 bg-purple-50 rounded-xl border border-purple-200"
+          >
+            <div class="flex items-start gap-2">
+              <span
+                class="inline-flex items-center size-8 aspect-square justify-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-600 text-white"
+              >
+                📝
+              </span>
+              <span class="text-slate-700" dynamic="aiNote"></span>
+            </div>
+            <p class="mt-3 text-xs text-purple-600 italic">
+              🤖 Tato poznámka byla vygenerována AI na základě přednášek.
+            </p>
+          </aside>
+
+          <!-- Text Answer Section -->
+          <div ng-show="textAnswer" class="mt-6">
+            <textarea
+              class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all resize-none text-slate-700"
+              rows="5"
+              ng-model="userText"
+              placeholder="Napíšte svoju odpoveď..."
+            ></textarea>
+
+            <div ng-if="ss" class="mt-4 space-y-4">
+              <div class="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                <p class="text-slate-700" dynamic="textAnswer"></p>
+                <!-- Answer Image -->
+                <div ng-if="answerImage" class="mt-4">
+                  <img
+                    ng-src="{{answerImage}}"
+                    alt="Obrázok k odpovedi"
+                    class="max-w-full h-auto rounded-lg border border-slate-200 shadow-sm"
+                  />
+                </div>
+              </div>
+
+              <nav
+                class="flex gap-3"
+                role="group"
+                aria-label="Hodnotenie odpovede"
+              >
+                <button
+                  type="button"
+                  ng-click="nextOK()"
+                  class="inline-flex items-center gap-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white font-medium rounded-xl transition-colors shadow-sm"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z"
+                    />
+                  </svg>
+                  Správne
+                </button>
+                <button
+                  type="button"
+                  ng-click="nextWrong()"
+                  class="inline-flex items-center gap-2 px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white font-medium rounded-xl transition-colors shadow-sm"
+                >
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path
+                      d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z"
+                    />
+                  </svg>
+                  Nesprávne
+                </button>
+              </nav>
+            </div>
+          </div>
+        </section>
+      </article>
+
+      <!-- Action Buttons -->
+      <nav
+        class="flex flex-wrap gap-3 mb-6"
+        role="group"
+        aria-label="Ovládanie testu"
+      >
+        <button
+          type="button"
+          ng-disabled="ss"
+          ng-click="solve(selectedAnswers)"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-400 disabled:cursor-not-allowed text-white font-medium rounded-xl transition-colors shadow-sm"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          Vyhodnotiť
+        </button>
+        <button
+          type="button"
+          ng-click="next()"
+          ng-disabled="!ss"
+          ng-if="!textAnswer"
+          class="inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-slate-50 disabled:bg-slate-100 disabled:text-slate-400 disabled:cursor-not-allowed text-slate-700 font-medium rounded-xl border-2 border-slate-200 hover:border-slate-300 transition-colors shadow-sm"
+        >
+          Ďalšia otázka
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 7l5 5m0 0l-5 5m5-5H6"
+            />
+          </svg>
+        </button>
+      </nav>
+
+      <!-- Stats Section -->
+      <section
+        class="flex flex-wrap items-center justify-between gap-4 p-4 bg-white rounded-xl border border-slate-200 shadow-sm mb-8"
+      >
+        <div class="flex flex-wrap items-center gap-4">
+          <div class="flex items-center gap-2">
+            <span class="text-slate-600">Chybne:</span>
+            <span
+              class="inline-flex items-center justify-center min-w-[2rem] px-2.5 py-1 bg-red-100 text-red-700 font-semibold rounded-lg"
+            >
+              {{ totalErrors }}
+            </span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-slate-600">Správne:</span>
+            <span
+              class="inline-flex items-center justify-center min-w-[2rem] px-2.5 py-1 bg-green-100 text-green-700 font-semibold rounded-lg"
+            >
+              {{ totalOK }}
+            </span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-slate-600">Zostáva otázok:</span>
+            <span
+              class="inline-flex items-center justify-center min-w-[2rem] px-2.5 py-1 bg-slate-100 text-slate-700 font-semibold rounded-lg"
+            >
+              {{ total }}
+            </span>
+          </div>
+        </div>
+        <a
+          id="overviewLink"
+          href="overview.html"
+          class="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-lg transition-colors border border-slate-200"
+        >
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+            />
+          </svg>
+          Prehľad otázok
+        </a>
+      </section>
+
+      <!-- Answer Evaluation Legend -->
+      <aside
+        ng-if="ss && !textAnswer"
+        class="flex flex-wrap items-center gap-4 p-4 bg-white rounded-xl border border-slate-200 shadow-sm mb-8 text-sm"
+      >
+        <span class="font-medium text-slate-600">Legenda vyhodnotenia:</span>
+        <span class="flex items-center gap-2">
+          <span
+            class="w-4 h-4 rounded border-2 border-green-400 bg-green-50"
+          ></span>
+          <span class="text-slate-600">Správne označené/neoznačené</span>
+        </span>
+        <span class="flex items-center gap-2">
+          <span
+            class="relative w-4 h-4 rounded border-2 border-red-400 bg-red-50"
+          >
+            <span
+              class="absolute inset-0 flex items-center justify-center text-xs text-red-500"
+              >✓</span
+            >
+          </span>
+          <span class="text-slate-600">Nemalo byť označené</span>
+        </span>
+        <span class="flex items-center gap-2">
+          <span
+            class="w-4 h-4 rounded border-2 border-red-400 bg-red-50"
+          ></span>
+          <span class="text-slate-600">Malo byť označené</span>
+        </span>
+      </aside>
+
+      <!-- Footer -->
+      <footer class="border-t border-slate-200 pt-6">
+        <nav
+          class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500"
+        >
+          <a
+            href="#"
+            onclick="
+              event.preventDefault();
+              location.reload(true);
+            "
+            class="hover:text-blue-600 transition-colors"
+            >Reset testeru</a
+          >
+          <span class="hidden sm:inline">•</span>
+          <span>2016–2026</span>
+          <span class="hidden sm:inline">•</span>
+          <a
+            href="https://gitlab.com/novacto3/paa-tester-2"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-blue-600 transition-colors"
+          >
+            Zdrojové kódy na Gitlabu
+          </a>
+          <span class="hidden sm:inline">•</span>
+          <a
+            href="https://github.com/AlesSrsen/kop-tester"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-blue-600 transition-colors"
+          >
+            Aktuálna stránka na GitHub
+          </a>
+        </nav>
+        <p class="mt-3 text-sm text-slate-500">
+          <a
+            href="https://srsen.me"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:text-blue-600 transition-colors"
+          >
+            🐝 srsen.me
+          </a>
+        </p>
+      </footer>
     </main>
 
     <script type="text/javascript">
-        // Question set management
-        (function () {
-            var urlParams = new URLSearchParams(window.location.search);
-            var questionSet = urlParams.get('set') || 'assessment';
+      // Question set management
+      (function () {
+        var urlParams = new URLSearchParams(window.location.search);
+        var questionSet = urlParams.get("set") || "assessment";
 
-            // Set selector value and update UI
-            var selector = document.getElementById('questionSetSelector');
-            var countDisplay = document.getElementById('questionCount');
-            var overviewLink = document.getElementById('overviewLink');
+        // Set selector value and update UI
+        var selector = document.getElementById("questionSetSelector");
+        var countDisplay = document.getElementById("questionCount");
+        var overviewLink = document.getElementById("overviewLink");
 
-            selector.value = questionSet;
+        selector.value = questionSet;
 
-            // Update overview link to preserve question set
-            overviewLink.href = 'overview.html?set=' + questionSet;
+        // Update overview link to preserve question set
+        overviewLink.href = "overview.html?set=" + questionSet;
 
-            // Set the active questions based on selection
-            if (questionSet === 'exam') {
-                window.activeQuestions = window.examQuestions || [];
-                countDisplay.textContent = (window.examQuestions ? window.examQuestions.length : 0) + ' otázok';
-            } else {
-                window.activeQuestions = window.questions || [];
-                countDisplay.textContent = (window.questions ? window.questions.length : 0) + ' otázok';
-            }
+        // Set the active questions based on selection
+        if (questionSet === "exam") {
+          window.activeQuestions = window.examQuestions || [];
+          countDisplay.textContent =
+            (window.examQuestions ? window.examQuestions.length : 0) +
+            " otázok";
+        } else {
+          window.activeQuestions = window.questions || [];
+          countDisplay.textContent =
+            (window.questions ? window.questions.length : 0) + " otázok";
+        }
 
-            // Handle selector change
-            selector.addEventListener('change', function () {
-                var newSet = this.value;
-                var newUrl = window.location.pathname + '?set=' + newSet;
-                window.onbeforeunload = null; // Disable confirmation for intentional navigation
-                window.location.href = newUrl;
-            });
-        })();
+        // Handle selector change
+        selector.addEventListener("change", function () {
+          var newSet = this.value;
+          var newUrl = window.location.pathname + "?set=" + newSet;
+          window.onbeforeunload = null; // Disable confirmation for intentional navigation
+          window.location.href = newUrl;
+        });
+      })();
 
-        window.onbeforeunload = function confirmExit() {
-            return "Prerušiť test?";
-        };
+      window.onbeforeunload = function confirmExit() {
+        return "Prerušiť test?";
+      };
     </script>
-</body>
-
+  </body>
 </html>

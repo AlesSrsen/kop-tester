@@ -181,6 +181,13 @@
                 $scope.textAnswer = questions.answer;
             }
 
+            // Handle answer image for text questions
+            if (questions.answerImage) {
+                $scope.answerImage = questions.answerImage;
+            } else {
+                $scope.answerImage = "";
+            }
+
             // Shuffle answers to randomize their order
             $scope.question = shuffleArray(fin);
             $scope.total = QUESTIONS.length;
