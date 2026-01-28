@@ -413,21 +413,6 @@ examQuestions.push({
 });
 
 examQuestions.push({
-    "question": "Algoritmus, který má za běhu upravovat selekční tlak v genetickém algoritmu, může být založen na zjištění",
-    "answers": {
-        "1": "diverzity jedinců",
-        "2": "změny průměrné zdatnosti mezi generacemi",
-        "3": "poměru zdatnosti např. nejzdatnějšího jedince a jedince v polovině pořadí"
-    },
-    "correct": {
-        "1": 1,
-        "2": 1,
-        "3": 1
-    },
-    "aiNote": "Všechny tři metriky dávají zpětnou vazbu o stavu evoluce: diverzita (ztráta variability), trend průměrné zdatnosti (stagnace/zrychlení) i rozptyl/„gap“ mezi elitou a středem (indikace tlaku). Na jejich základě lze tlak adaptovat."
-});
-
-examQuestions.push({
     "question": "Algoritmus, který má za běhu upravovat selekční tlak v genetickém algoritmu používajícím lineární škálování a ruletový výběr, bude přímo nastavovat",
     "answers": {
         "1": "pravděpodobnost mutace",
@@ -1392,4 +1377,34 @@ examQuestions.push({
         "3": 0
     },
     "aiNote": "Při µ=λ=1 máme v každém kroku právě jednoho „rodiče“ a vytvoří se jeden potomek; z dvojice {rodič, potomek} se ponechá lepší. To je přesně lokální iterativní heuristika typu „prvé zlepšení/přípustné zlepšení“ (ve smyslu: přijmi tah, pokud zlepší). Není to „nejlepší nejdříve“ (to vybírá nejlepší ze širší množiny otevřených stavů) ani náhodná procházka (ta by občas přijímala i horší stav)."
+});
+
+examQuestions.push({
+    "question": "Máte genetický algoritmus a svou teorii ohledně vlastností instance, jak ji overíte?",
+    "answers": {
+        "1": "Vygeneruji jak malé, tak velké instance a nad nimi spustím algoritmus",
+        "2": "Algoritmus spustím opakovaně nad instancemi",
+        "3": "Vygeneruji instance s danou vlastností a nad nimi spustím genetický algoritmus",
+    },
+    "correct": {
+        "1": 1,
+        "2": 1,
+        "3": 0
+    },
+    "note": "Odpoveď v testeri nie je overená Moodle testom"
+});
+
+examQuestions.push({
+    "question": "Algoritmus, který má za běhu upravovat selekční tlak v genetickém algoritmu, může být založen na zjištění",
+    "answers": {
+        "1": "diverzity (rozdílnosti) jedinců",
+        "2": "změny průměrné zdatnosti mezi generacemi",
+        "3": "poměru zdatnosti např. nejzdatnějšího jedince a jedince v polovině pořadí"
+    },
+    "correct": {
+        "1": 1,
+        "2": 1,
+        "3": 1
+    },
+    "aiNote": "Všechny tři metriky dávají zpětnou vazbu o stavu evoluce: diverzita (ztráta variability), trend průměrné zdatnosti (stagnace/zrychlení) i rozptyl/„gap“ mezi elitou a středem (indikace tlaku). Na jejich základě lze tlak adaptovat."
 });
