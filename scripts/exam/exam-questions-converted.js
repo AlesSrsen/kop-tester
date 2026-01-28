@@ -60,6 +60,33 @@ examQuestions.push({
 });
 
 examQuestions.push({
+    "question": "Open Question - Problém nejkratsiho plánu robota",
+    "image": "assets/exam/nejkratsi-plan-robota-2024-02-09.png",
+    "answer": `
+10/10 odpověď:   
+
+**konfiguracni promenne:**
+Potrebujeme zaznamenat posloupnost posunu robota nebo prekazek. Aby byla kazda konfigurace jednoznacna, budu ji reprezentovat jako vektor hran. Kdyz je na jednom konci hrany robot, posune se na druhy konec hrany. Kdyz je na jednom konci prekazka, presune se na druhy konec. Zbytecny krok je pridani hrany, ktera ma prazdne oba vrcholy nebo hrana, ktera ma plne oba vrcholy. Takovy krok sice validni, ale nema
+zadny efekt.
+
+Obor konf. promennych je tedy libovolna posloupnost hran.
+Reprezentace - napriklad kazde hrane pridelime cislo, a toto budeme pouzivat v konfiguracich
+
+**Stavovy prostor:**
+konfigurancni promenne viz vyse
+operator je pridani hrany do aktualni posloupnosti hran, nebo odebrani posledni hrany v posloupnsoti -- dosahneme souvislosti stavoveho prostoru, meli bychom tedy teoreticky mit moznost dosahnout jakehokoliv stavu
+stavy, ktere obsahuji zbytecne posuny (viz bod 1) se penalizuji samy, zbytecnym zvysenim kroku. Muzeme je za to ale dale penalizovat i nejak jinak. Take opakovani stejne hrany vicekrat za sebou (posun tam a zpet) by mel byt penalizovan. Neopoustime vsak stavovy prostor (jen
+delame tahy bez priblizeni k cili), takze neni potreba relaxovat.
+optimalizacni kriterium bychom mohli pocitat z poctu pouzitych kroku (cim mene, tim je stav hodnotnejsi) a vzdalenosti od cile (cim jsme bliz, tim je stav hodnotnejsi)
+
+**Pocatecni reseni:**
+Nejjednodussi je zacit z prazdnou posloupnosti -- zadnymi hranami.
+Muzeme ale vytvorit algoritmus na pokus o generovani nejakeho reseni: Najdeme nejakou cestu z pocatecniho do koncoveho bodu, nehlede na prekazky (treba pomoci BFS, ktery ale musime nekdy zastavit, treba po #hran krocich). Pokud po ceste nejakou prekazku potkame, tak jako pocatecni reseni vezmeme posloupnost, ktera posune robota po teto ceste az nez narazi na prekazku.
+Od tohoto reseni muze heuristika hledat, jak prekazku odstranit a postupovat dale.
+`
+});
+
+examQuestions.push({
     "question": "Open Question - Problém celočíselných multikomoditních toků ve stromu",
     "image": "assets/exam/toky-ve-stromu-2026-01-20.png",
     "answer": `
