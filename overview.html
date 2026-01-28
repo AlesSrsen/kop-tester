@@ -268,7 +268,7 @@
                         // Preserve multiple consecutive newlines
                         text = text.replace(/\n\n+/g, function(match) {
                             var count = match.length - 1;
-                            var result = '\n';
+                            var result = '';
                             for (var i = 0; i < count; i++) {
                                 result += '%%BLANKLINE%%\n';
                             }

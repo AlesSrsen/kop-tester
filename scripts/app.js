@@ -87,7 +87,7 @@
                         html = html.replace(/\n\n+/g, function (match) {
                             // Each double+ newline becomes paragraph breaks
                             var count = match.length - 1; // number of line breaks to insert
-                            var result = '\n';
+                            var result = '';
                             for (var i = 0; i < count; i++) {
                                 result += '%%BLANKLINE%%\n';
                             }

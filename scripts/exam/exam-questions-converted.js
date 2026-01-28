@@ -74,14 +74,13 @@ examQuestions.push({
     "image": "assets/exam/min-sum-procedure-2025-01-16.png",
     "answer": `
 10/10 odpověď:   
-    
+
 Konfigurační proměnné
 Potřebujeme reprezentovat posloupnost A, budeme zapisovat do vectoru o délce r. Daný index ve vektoru bude označovat, zda dané číslo v posloupnosti je, nebo není. Tedy pro např. posloupnost (1,2,3,4,7,10,20) by mohl vektor vypadat následovně (1,1,1,1,0,0,1,0,0,1,0..0,1).
 Konfigurační proměnná by byla nějaké ohodnocení daného vektoru
 Obor hodnot by byla jakákoliv konfigurace/ohodnocení takového vektoru - všechny možnosti
 
 Stavový prostor
-
 Obsahuje nějakou konfigurační proměnnou z minulé sekci
 Ohodnocení daného stavu je dané počtem 1 v daném vectoru + zda je daná posloupnost validní
 Přesun do nového stavu by bylo dosaženo náhodným zaměněním hodnoty ve vectoru - tedy bud' z 0 na 1 nebo z 1 na 0 (krom prvního indexu, který musí být vždy součástí řešení)
@@ -90,13 +89,11 @@ Ohodnocení - cost funkce - daného algoritmu je daná počtem 1 ve vectoru - me
 - povolujeme jistou míru relaxace
 
 Vlastnosti stavového prostoru
-
 Toto řešení povoluje i nevalidní stavy, protože v posloupnosti múže být v nějaké konfiguraci číslo, které nelze vytvořit sečtením předcházejících prvků v posloupnosti - tyto proměnné musíme penalizovat.
 Ohodnocení (cost) a přesuny viz předešlá sekce
 Dalo by se to obejit asi možností, kde bysme generovali proměnné postupně z nulového vektoru jen kombinacemi proměnných již obsáhnuté daným vektorem, pak by přechody mezi stavy byly vždy validní a nemuselo by se relaxoval
 
 Počáteční řešení
-
 Triviální by byla konfigurace definovaná vectorem plným 0 až na první pozici, kde by byla 1 (dané prvním bodem v řeseni)
 Dalsí možnost by byla nahodné ohodnocení daného vektoru, které müze vygenerovat i nevaldiní resení. Nicméné stavový prostor je silné souvislý, takže by nemel mit na resení vliv.
 `
