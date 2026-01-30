@@ -1504,3 +1504,88 @@ examQuestions.push({
     },
     "aiNote": "Všechny tři metriky dávají zpětnou vazbu o stavu evoluce: diverzita (ztráta variability), trend průměrné zdatnosti (stagnace/zrychlení) i rozptyl/„gap“ mezi elitou a středem (indikace tlaku). Na jejich základě lze tlak adaptovat."
 });
+
+examQuestions.push({
+    "question": "Genetické programování pracuje nad reprezentací",
+    "answers": {
+        "1": "vektoru reálných čísel",
+        "2": "rozkladového stromu výrazu",
+        "3": "binárního řetězu",
+        "4": "automatu"
+    },
+    "correct": {
+        "1": 0,
+        "2": 1,
+        "3": 0,
+        "4": 0
+    }
+});
+
+examQuestions.push({
+    "question": "Máte experimentálně vyhodnotit, zda algoritmus, který automaticky nastavuje počáteční teplotu simulovaného ochlazování, pracuje uspokojivě.",
+    "answers": {
+        "1": "Zjistíte z literatury nebo experimentalně, jaké vlastnosti mají vliv na nutnou počăteční teplotu, a pokryjete jejich rozsah vhodnými instancemi.",
+        "2": "Použijete instance různé velikosti.",
+        "3": "Použijete instance s rozdílnou hloubkou lokálních minim.",
+        "4": "Problému se vyhnete převzetím algoritmu, který fungoval uspokojivě na jiném kombinatorickém optimalizačním problému."
+    },
+    "correct": {
+        "1": 1,
+        "2": 1,
+        "3": 1,
+        "4": 0
+    }
+});
+
+examQuestions.push({
+    "question": "Open Question - Problém minimální Booleovy formule",
+    "image": "assets/exam/min-booleova-formule-2026-01-29.png",
+    "answer": `
+10/10 odpověď:   
+
+Jako konfigurační proměnnou bych použil strom, kde listy jsou proměnné a uzly operátory (závorky jsou reprezentovány implicitně). Obor hodnot je pak nejaký takový strom s podmínkou, že pro vektory z P je ohodnocení 1 a z N O.
+
+Použil bych genetické programování, jelikož je vhodné pro stromové reprezentace.
+
+Individuum by bylo viz bod 1 nějaký strom splňující požadované vlastnosti. Cost je počet uzlů bez listů, což se snažím minimalizovat (uvažujeme jen validní stromy splňující řešeni)
+
+Mutace (unárni) - změna operátoru v uzlu za jiný, převěšení proměnné v listu k jinému uzlu, přidání nového uzlu, smazání uzlu. Musíme si hlídat, že je strom po změně stále validní 
+Křížení (binárni) - prohodíme/nahradíme nějaký podstrom z jiného individua. Opět ověříme, že splňujeme podmínky
+
+Počáteční generace může být např:
+náhodné vybrání jednoho operátoru a vytvorení binárního stromu jen pomocí tohoto operátoru
+systematické vytvorení stromu co dává 1 pro P (nebo 0 pro N)
+u obou případů bychom museli mutovat, dokud by nebyla splněna podmínka řešení
+`
+});
+
+examQuestions.push({
+    "question": "Open Question - Problém minimálni gramatiky",
+    "image": "assets/exam/problem-minimalni-gramatiky-2026-01-29.png",
+    "answer": `
+8/10 odpověď:   
+
+**Konfiguračné premenné**
+Konfiguračné premenné budú v tomto prípade v tvare binárneho stromu (vrcholy a hrany), kde rozlisujeme lavého a pravého potomka (aby sme vedeli poskladat finálny retazec v spravnom
+poradí). Ciže obor hodnot jsou jednotlivé stromy zložené z vnútorných vrcholov, terminálov alebo retazcov terminálov v listoch. Neterminály výslednej gramatiky vieme dohladat porovnaním
+podstromov v jednotlivých vnútorných vrcholoch (pomenuvávame postupne A, B, C...; v koreni je počiatočný neterminál S. Listy s rovnakými retazcami budú určené rovnakým neterminálom).
+
+**Druh simlulované evoluce**
+Keďže operujeme nad stromom, využijeme Genetické Programovanie. To je vhodné na tento typ rerpezentácie, kedže pracuje nad stromovou reprezentáciou.
+
+**Reprezentace individua**
+Individuum bude konkrétny strom - vrcholy a hrany medzi nimi.
+
+**Genetické operátory**
+Mutace (unárny operátor) - rozdelenie retazca na dva potomky alebo spojenie dvoch listov (potomkov) do retazca (ich rodič pri rozdelení je prázdny node); pridanie alebo odobranie terminálu (z abecedy) do/z listu. Takáto volba vytvorí spojity priestor prehladávania a dovolí nám začat aj s prazdnym retazcom.
+Krizeni (binárny operátor) - vymenenie podstromu dvoch individuí.
+
+Pri takýchto operátoroch môžeme mat aj neplatné riešenia; toto budeme musiet zohladňovat pri výpočtu zdatnosti.
+
+**Generovaní pocateční generace**
+Môžeme začať s prázdnym retazcom alebo môžeme začať s finalnym retazcom v koreni.
+
+**Komentár opravujúceho**
+Hledáte gramatiku, ne řetězec
+`
+});
