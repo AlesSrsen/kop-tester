@@ -1543,7 +1543,7 @@ examQuestions.push({
     "answer": `
 10/10 odpověď:   
 
-Jako konfigurační proměnnou bych použil strom, kde listy jsou proměnné a uzly operátory (závorky jsou reprezentovány implicitně). Obor hodnot je pak nejaký takový strom s podmínkou, že pro vektory z P je ohodnocení 1 a z N O.
+Jako konfigurační proměnnou bych použil strom, kde listy jsou proměnné a uzly operátory (závorky jsou reprezentovány implicitně). Obor hodnot je pak nejaký takový strom s podmínkou, že pro vektory z P je ohodnocení 1 a z N 0.
 
 Použil bych genetické programování, jelikož je vhodné pro stromové reprezentace.
 
